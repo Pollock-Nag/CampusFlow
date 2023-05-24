@@ -26,8 +26,10 @@ function SiteChip({ alumniInfo }) {
             </div>
           </div>
           <div className="text-2xl font-semibold text-purple-700 opacity-80">
-            <p>{onlineJudge?.name}</p>
-            <p>{onlineJudge?.username}</p>
+            <div>{onlineJudge?.name}</div>
+            <div className="flex flex-wrap text-xl">
+              {onlineJudge?.username}
+            </div>
           </div>
           <div className="card-actions justify-end"></div>
         </div>
