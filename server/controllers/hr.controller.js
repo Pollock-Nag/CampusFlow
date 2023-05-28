@@ -12,50 +12,6 @@ const filterByStack = (allAlumniList, stack) => {
   return filteredAlumniList;
 };
 
-const filterBySkillsIdAndSort = (allAlumniList, stack) => {
-  const filteredAlumniListByReactAngular = [];
-
-  allAlumniList.forEach((alumni) => {
-    const alumniObj = {
-      studentId: alumni.studentId.toString(),
-      alumniDetails: alumni.alumniDetails,
-      checkpoint: alumni.checkpoint,
-      others: {},
-    };
-
-    // console.log(alumni.studentId.toString(), 'alumni');
-    alumni.checkpoint.techSkills.forEach((techSkill) => {
-      if (techSkill.skill.toString() === stack) {
-        // console.log(techSkill.skill.toString(), techSkill.marks);
-
-        alumniObj.others = {
-          // alumni: alumni,
-          // alumni: Object.assign(alumni),
-
-          skillId: techSkill.skill.toString(),
-          marks: techSkill.marks,
-        };
-        filteredAlumniListByReactAngular.push(alumniObj);
-        // filteredAlumniListByReactAngular.push({
-        //   // alumni: alumni,
-        //   // alumni: Object.assign(alumni),
-
-        //   skillId: techSkill.skill.toString(),
-        //   marks: techSkill.marks,
-        //   checkpoint: alumni.checkpoint,
-        // });
-      }
-    });
-  });
-
-  // sort res by marks
-  filteredAlumniListByReactAngular.sort((a, b) => {
-    return b.marks - a.marks;
-  });
-  // console.log(filteredAlumniListByReactAngular, 'debug');
-  return filteredAlumniListByReactAngular;
-};
-
 const filterBySkillsId = (
   filteredAlumniByStacked,
   tempFilter,
@@ -86,9 +42,41 @@ const sortBySum = (tempFilter) => {
   return tempFilter;
 };
 
-const test = async (req, res) => {
-  res.status(200).send('Hello World');
-};
+function filterAlumniListByStackType(stackType, allAlumniList, skilltypeIds) {
+  let tempFilter = [];
+  let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
+  let filteredAlumniListByFullStack = filterByStack(allAlumniList, 'fullstack');
+
+  let result;
+
+  if (stackType === 'frontend') {
+    const filteredFrontendAlumnus = [
+      ...filteredAlumniListByStack,
+      ...filteredAlumniListByFullStack,
+    ];
+
+    result = filterBySkillsId(
+      filteredFrontendAlumnus,
+      tempFilter,
+      skilltypeIds
+    );
+  } else if (stackType === 'backend') {
+    const filteredBackendAlumnus = [
+      ...filteredAlumniListByStack,
+      ...filteredAlumniListByFullStack,
+    ];
+
+    result = filterBySkillsId(filteredBackendAlumnus, tempFilter, skilltypeIds);
+  } else if (stackType === 'fullstack') {
+    result = filterBySkillsId(
+      filteredAlumniListByFullStack,
+      tempFilter,
+      skilltypeIds
+    );
+  }
+
+  return sortBySum(result);
+}
 
 const stackWiseFilter = async (req, res) => {
   const stackType = req.body.stack; // frontend, backend, fullstack
@@ -112,66 +100,85 @@ const stackWiseFilter = async (req, res) => {
     //  filtered by frontend, backend, fullstack
     // let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
 
-    let frontendResult;
-    let backendResult;
-    let fullStackResult;
-
     if (stackType === 'frontend') {
-      let tempFilter = [];
-      let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
-
-      let filteredAlumniListByFullStack = filterByStack(
+      let frontendResult = filterAlumniListByStackType(
+        stackType,
         allAlumniList,
-        'fullstack'
-      );
-
-      const filteredFrontendAlumnus = [
-        ...filteredAlumniListByStack,
-        ...filteredAlumniListByFullStack,
-      ];
-
-      frontendResult = filterBySkillsId(
-        filteredFrontendAlumnus,
-        tempFilter,
         skilltypeIds
       );
-
-      return res.send(sortBySum(frontendResult));
+      return res.status(200).send(frontendResult);
     } else if (stackType === 'backend') {
-      let tempFilter = [];
-      let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
-      let filteredAlumniListByFullStack = filterByStack(
+      let backendResult = filterAlumniListByStackType(
+        stackType,
         allAlumniList,
-        'fullstack'
-      );
-
-      const filteredBackendAlumnus = [
-        ...filteredAlumniListByStack,
-        ...filteredAlumniListByFullStack,
-      ];
-
-      backendResult = filterBySkillsId(
-        filteredBackendAlumnus,
-        tempFilter,
         skilltypeIds
       );
-
-      return res.send(sortBySum(backendResult));
+      return res.status(200).send(backendResult);
     } else if (stackType === 'fullstack') {
-      let tempFilter = [];
-      let filteredAlumniListByFullStack = filterByStack(
+      let fullStackResult = filterAlumniListByStackType(
+        stackType,
         allAlumniList,
-        'fullstack'
-      );
-
-      fullStackResult = filterBySkillsId(
-        filteredAlumniListByFullStack,
-        tempFilter,
         skilltypeIds
       );
-
-      return res.status(200).send(sortBySum(fullStackResult));
+      return res.status(200).send(fullStackResult);
     }
+
+    // if (stackType === 'frontend') {
+    //   let tempFilter = [];
+    //   let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
+
+    //   let filteredAlumniListByFullStack = filterByStack(
+    //     allAlumniList,
+    //     'fullstack'
+    //   );
+
+    //   const filteredFrontendAlumnus = [
+    //     ...filteredAlumniListByStack,
+    //     ...filteredAlumniListByFullStack,
+    //   ];
+
+    //   frontendResult = filterBySkillsId(
+    //     filteredFrontendAlumnus,
+    //     tempFilter,
+    //     skilltypeIds
+    //   );
+
+    //   return res.send(sortBySum(frontendResult));
+    // } else if (stackType === 'backend') {
+    //   let tempFilter = [];
+    //   let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
+    //   let filteredAlumniListByFullStack = filterByStack(
+    //     allAlumniList,
+    //     'fullstack'
+    //   );
+
+    //   const filteredBackendAlumnus = [
+    //     ...filteredAlumniListByStack,
+    //     ...filteredAlumniListByFullStack,
+    //   ];
+
+    //   backendResult = filterBySkillsId(
+    //     filteredBackendAlumnus,
+    //     tempFilter,
+    //     skilltypeIds
+    //   );
+
+    //   return res.send(sortBySum(backendResult));
+    // } else if (stackType === 'fullstack') {
+    //   let tempFilter = [];
+    //   let filteredAlumniListByFullStack = filterByStack(
+    //     allAlumniList,
+    //     'fullstack'
+    //   );
+
+    //   fullStackResult = filterBySkillsId(
+    //     filteredAlumniListByFullStack,
+    //     tempFilter,
+    //     skilltypeIds
+    //   );
+
+    //   return res.status(200).send(sortBySum(fullStackResult));
+    // }
   } catch (err) {
     console.log(err);
     res.status(500).send('Internal Server Error');
@@ -179,6 +186,5 @@ const stackWiseFilter = async (req, res) => {
 };
 
 module.exports = {
-  test,
   stackWiseFilter,
 };
