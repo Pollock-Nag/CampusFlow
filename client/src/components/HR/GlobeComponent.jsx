@@ -5,10 +5,11 @@ function GlobeComponent() {
 
   useEffect(() => {
     const globe = globeEl.current;
+    globe.pointOfView({ lat: 23.7798373, lng: 90.383987 });
 
     // Auto-rotate
     globe.controls().autoRotate = true;
-    globe.controls().autoRotateSpeed = 8;
+    globe.controls().autoRotateSpeed = 1;
 
     // Add clouds sphere
     const CLOUDS_IMG_URL = './clouds.png'; // from https://github.com/turban/webgl-earth
@@ -39,6 +40,13 @@ function GlobeComponent() {
       color: 'blue',
     },
     {
+      markerSvg: `<img src="https://mliv6plxtvjb.i.optimole.com/w:auto/h:auto/q:mauto/https://codeworks.me/wp-content/uploads/2019/07/logo-horizontal-orange.svg" class="custom-logo astra-logo-svg" alt="Codeworks" decoding="async" data-opt-lazy-loaded="false"></img>`,
+      lat: 38.464874,
+      lng: -100.967433,
+      size: 130,
+      color: 'blue',
+    },
+    {
       markerSvg: `<img src="https://images.squarespace-cdn.com/content/v1/62f276db23ed6539a9115860/53b9e0da-2e26-4ee1-a454-0b5e8d465eaf/PROJECT+CODE.png" class="custom-logo astra-logo-svg" alt="Codeworks" decoding="async" data-opt-lazy-loaded="false"></img>`,
       lat: 23.7798373,
       lng: 90.383987,
@@ -49,9 +57,10 @@ function GlobeComponent() {
 
   console.log(gData);
   return (
-    <div className="bg-rose-500 h-screen">
+    <div className="bg-purple-900 h-screen">
       <Globe
         ref={globeEl}
+        width={1000}
         animateIn={true}
         backgroundColor="black"
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
