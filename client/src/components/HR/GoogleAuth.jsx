@@ -9,6 +9,29 @@ function GoogleAuth() {
   console.log(createdUser);
   console.log(error);
 
+  const logInUser = (credentialResponse) => {
+    const token = credentialResponse.credential;
+    const decode = jwt_decode(token);
+    const user = {
+      name: decode.given_name,
+      email: decode.email,
+      role: 'hr',
+      githubUsername: 'hr-dummy-github',
+    };
+    createUser(user);
+    // console.log(user);
+
+    Cookies.set(
+      'hrauth',
+      JSON.stringify({
+        accessToken: token,
+        user: user,
+        role: user.role,
+      }),
+      { expires: 1 } // 1 day
+    );
+  };
+
   return (
     <div>
       <GoogleOAuthProvider clientId="531260105922-o9dbq6i20vtmdj6e80ndph5ftc839f7e.apps.googleusercontent.com">
@@ -16,28 +39,7 @@ function GoogleAuth() {
           size="large"
           theme="outline"
           useOneTap
-          onSuccess={(credentialResponse) => {
-            const token = credentialResponse.credential;
-            const decode = jwt_decode(token);
-            const user = {
-              name: decode.given_name,
-              email: decode.email,
-              role: 'hr',
-              githubUsername: 'hr-dummy-github',
-            };
-            createUser(user);
-            // console.log(user);
-
-            Cookies.set(
-              'hrauth',
-              JSON.stringify({
-                accessToken: token,
-                user: user,
-                role: user.role,
-              }),
-              { expires: 1 } // 1 day
-            );
-          }}
+          onSuccess={logInUser}
           onError={() => {
             console.log('Login Failed');
           }}
