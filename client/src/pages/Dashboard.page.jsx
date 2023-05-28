@@ -27,7 +27,7 @@ function Dashboard() {
   } = useGetAllActiveStudentsQuery();
 
   useEffect(() => {
-    if (name) {
+    if (true) {
       setIsLoading(false);
     }
   }, [name]);
