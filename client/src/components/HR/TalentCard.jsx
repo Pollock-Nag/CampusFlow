@@ -18,7 +18,7 @@ function TalentCard({ result, studentId }) {
   useEffect(() => {
     setChartData(studentInfo?.checkpoints[3]);
     setFilteredTechSkills(
-      studentInfo?.checkpoints[3]?.techSkills.filter((skill) => {
+      studentInfo?.checkpoints[3]?.techSkills?.filter((skill) => {
         if (skill?.skill?.stack?.length > 0) return skill?.skill;
       })
     );
@@ -30,7 +30,6 @@ function TalentCard({ result, studentId }) {
 
   const latestEducation =
     alumniInfo?.education[alumniInfo?.education.length - 1];
-  console.log(chartData.techSkills);
 
   const gotoProfile = () => {
     navigate(`/hr/candidate/${studentId}`);
@@ -72,7 +71,7 @@ function TalentCard({ result, studentId }) {
                   />
                 </div>
               </div>
-              {alumniInfo?.experiences.length > 0 ? (
+              {alumniInfo?.experiences?.length > 0 ? (
                 <>
                   <p className=" mt-1 leading-4 text-sm text-gray-700">
                     I've worked with <br />

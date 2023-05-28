@@ -41,6 +41,7 @@ import HRSearchResults from './pages/HR/HRSearchResults.page';
 import HRCandidatePreview from './pages/HR/HRCandidatePreview.page';
 import PrivateRoute from './components/common/PrivateRoute';
 import PublicRoute from './components/common/PublicRoute';
+import GlobeComponent from './components/HR/GlobeComponent';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
@@ -112,6 +113,7 @@ function App() {
             <Route path="query" element={<HRQuesetions />} />
             <Route path="query-results" element={<HRSearchResults />} />
             <Route path="candidate/:id" element={<HRCandidatePreview />} />
+            <Route path="glove" element={<GlobeComponent />} />
           </Route>
           <Route
             path="*"
