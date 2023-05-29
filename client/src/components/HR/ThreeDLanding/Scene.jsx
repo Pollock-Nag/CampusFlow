@@ -6,6 +6,7 @@ import GlobeComponent from '../GlobeComponent';
 import { Html } from './Html';
 import { Objects } from './Objects';
 import { Particles } from './Particles';
+import Button3D from './ThreeDButton';
 
 function Scene() {
   useFrame(({ mouse, camera }) => {

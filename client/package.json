@@ -44,7 +44,8 @@
     "sass": "^1.62.1",
     "scss": "^0.2.4",
     "slick-carousel": "^1.8.1",
-    "three": "^0.152.2"
+    "three": "^0.152.2",
+    "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
