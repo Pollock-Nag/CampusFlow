@@ -5,10 +5,8 @@ const Alumni = require('../models/alumni/alumni.model');
 // util functions
 const filterByStack = (allAlumniList, stack) => {
   const filteredAlumniList = allAlumniList.filter((alumni) => {
-    // console.log(alumni.alumniDetails.stack);
     if (alumni.alumniDetails.stack === stack) return alumni;
   });
-  //   console.log(filteredAlumniList.length);
   return filteredAlumniList;
 };
 
