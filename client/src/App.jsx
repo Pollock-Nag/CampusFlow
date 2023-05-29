@@ -34,6 +34,7 @@ import { Toaster } from 'react-hot-toast';
 import AlumniPortfolio from './pages/AlumniPortfolio';
 import AlumniEducation from './pages/AlumniEducation';
 import AlumniExperience from './pages/AlumniExperience';
+import ChangeStack from './components/alumniComponents/UpdateProfile/ChangeStack';
 
 import HRloginPage from './pages/HR/HRloginPage';
 import HRQuesetions from './pages/HR/HRQuestions.page';
@@ -106,7 +107,7 @@ function App() {
             <Route path="add-project" element={<ProjectForm />} />
             <Route path="education" element={<AlumniEducation />} />
             <Route path="experience" element={<AlumniExperience />} />
-            {/* <Route path="logout" element={<LogoutPage />} /> */}
+            <Route path="changestack" element={<ChangeStack />} />
           </Route>
           <Route path="hr">
             <Route path="login" element={<HRloginPage />} />

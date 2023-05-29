@@ -1,5 +1,4 @@
 import React from 'react';
-import { GoLocation } from 'react-icons/go';
 import moment from 'moment';
 function AlumniEducationCard({ eduInfo }) {
   return (
