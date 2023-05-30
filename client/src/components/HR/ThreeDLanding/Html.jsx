@@ -1,11 +1,10 @@
 import React from 'react';
 import GlobeComponent from '../GlobeComponent';
-import Button3D from './ThreeDButton';
 import TypingEffect from './TypingEffect';
 import Lottie from 'lottie-react';
 import scrolldown from '../../../assets/scrolldown.json';
 
-function Html() {
+function Html({ handleOpen }) {
   return (
     <>
       {/* <div style={{ fontSize: min('12vw', '86px'), lineHeight: 0.75 }}> */}
@@ -76,7 +75,10 @@ function Html() {
     
   "
         >
-          <span class="flex flex-col justify-center items-center h-full text-white font-bold text-xl ">
+          <span
+            class="flex flex-col justify-center items-center h-full text-white font-bold text-xl "
+            onClick={handleOpen}
+          >
             FIND TALENTS
           </span>
         </div>
