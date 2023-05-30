@@ -1,10 +1,9 @@
 import React from 'react';
 import { RxDashboard } from 'react-icons/rx';
-import { FaCode, FaBrain, FaUserGraduate } from 'react-icons/fa';
-import { RiUserSettingsLine } from 'react-icons/ri';
+import { FaCode, FaUserGraduate, FaTools } from 'react-icons/fa';
 import { BsBriefcase } from 'react-icons/bs';
-import { GrCertificate, GrConnect } from 'react-icons/gr';
-import { IoCalendarClearOutline, IoLogOutOutline } from 'react-icons/io5';
+import { GrCertificate } from 'react-icons/gr';
+import { IoLogOutOutline } from 'react-icons/io5';
 import SmallNameCard from './SmallNameCard';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
@@ -43,6 +42,10 @@ const AlumniSidebar = () => {
   };
   const handleExperience = () => {
     navigate('/alumni/experience');
+  };
+
+  const handleChangeStack = () => {
+    navigate('/alumni/changestack');
   };
 
   return (
@@ -88,6 +91,11 @@ const AlumniSidebar = () => {
             <a onClick={handleCertification}>
               <GrCertificate />
               Certifications
+            </a>
+          </li>
+          <li>
+            <a onClick={handleChangeStack}>
+              <FaTools color="gray" /> Change Stack
             </a>
           </li>
         </div>

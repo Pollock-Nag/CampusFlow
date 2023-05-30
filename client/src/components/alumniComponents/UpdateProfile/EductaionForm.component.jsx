@@ -24,9 +24,6 @@ const EducationForm = () => {
 
   const [addInfo, { data, isSuccess, error }] = useAddAlumniInfoMutation();
 
-  // console.log(skillset);
-  // filter all tech skill for alumni
-  // const techSkills = skillset?.filter(skill => skill.type === 'tech' && skill.status === true)
   const { _id: id } = useSelector((state) => state?.auth?.user) || {};
 
   useEffect(() => {
