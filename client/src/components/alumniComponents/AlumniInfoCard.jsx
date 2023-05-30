@@ -57,10 +57,11 @@ function AlumniInfoCard({ alumniInfo, githubUsername, cohort }) {
           </div>
           <div className="text-sm font-semibold">
             <Chip
-              name={cohort?.slice(8)?.toUpperCase()}
-              customColor={'purple-200'}
-              borderColor={'purple-300'}
-              padding={'3'}
+              name={`${cohort?.slice(8)?.toUpperCase()} Cohort`}
+              customColor={'gray-100'}
+              borderColor={'gray-300'}
+              padding={2}
+              textColor={'gray-500'}
             />
           </div>
         </div>

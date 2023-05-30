@@ -11,7 +11,6 @@ import {
 } from 'recharts';
 
 const SkillsRadarChart = ({ skills }) => {
-  console.log('hi');
   const createFormattedData = (skills) => {
     return skills?.map((skill) => {
       return {
@@ -22,8 +21,6 @@ const SkillsRadarChart = ({ skills }) => {
   };
 
   const data = createFormattedData(skills);
-  // console.log('data', data);
-
   return (
     <ResponsiveContainer height={'100%'} width={'100%'}>
       <RadarChart cx="50%" cy="50%" outerRadius="85%" data={data}>

@@ -37,8 +37,8 @@ function HRSearchResults() {
       {isLoading && <SearchLoader />}
       {!isLoading && (
         <div>
-          {results?.map((result) => (
-            <div className="flex justify-center items-center">
+          {results?.map((result, index) => (
+            <div className="flex justify-center items-center" key={index}>
               <TalentCard result={result} studentId={result?.studentId} />
             </div>
           ))}
