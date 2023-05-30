@@ -117,6 +117,63 @@ const stackWiseFilter = async (req, res) => {
       );
       return res.status(200).send(fullStackResult);
     }
+
+    // if (stackType === 'frontend') {
+    //   let tempFilter = [];
+    //   let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
+
+    //   let filteredAlumniListByFullStack = filterByStack(
+    //     allAlumniList,
+    //     'fullstack'
+    //   );
+
+    //   const filteredFrontendAlumnus = [
+    //     ...filteredAlumniListByStack,
+    //     ...filteredAlumniListByFullStack,
+    //   ];
+
+    //   frontendResult = filterBySkillsId(
+    //     filteredFrontendAlumnus,
+    //     tempFilter,
+    //     skilltypeIds
+    //   );
+
+    //   return res.send(sortBySum(frontendResult));
+    // } else if (stackType === 'backend') {
+    //   let tempFilter = [];
+    //   let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
+    //   let filteredAlumniListByFullStack = filterByStack(
+    //     allAlumniList,
+    //     'fullstack'
+    //   );
+
+    //   const filteredBackendAlumnus = [
+    //     ...filteredAlumniListByStack,
+    //     ...filteredAlumniListByFullStack,
+    //   ];
+
+    //   backendResult = filterBySkillsId(
+    //     filteredBackendAlumnus,
+    //     tempFilter,
+    //     skilltypeIds
+    //   );
+
+    //   return res.send(sortBySum(backendResult));
+    // } else if (stackType === 'fullstack') {
+    //   let tempFilter = [];
+    //   let filteredAlumniListByFullStack = filterByStack(
+    //     allAlumniList,
+    //     'fullstack'
+    //   );
+
+    //   fullStackResult = filterBySkillsId(
+    //     filteredAlumniListByFullStack,
+    //     tempFilter,
+    //     skilltypeIds
+    //   );
+
+    //   return res.status(200).send(sortBySum(fullStackResult));
+    // }
   } catch (err) {
     console.log(err);
     res.status(500).send('Internal Server Error');

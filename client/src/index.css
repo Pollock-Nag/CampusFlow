@@ -1,6 +1,6 @@
 ::-webkit-scrollbar {
   width: 12px; /* Adjust the width as per your preference */
-  margin: 20px
+  margin: 20px;
 }
 
 /* Track */
@@ -12,10 +12,27 @@
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 108, 255, 0.233);
   border-radius: 20px;
-
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: purple; /* Change to your desired hover handle color */
+}
+.avatar.online:before {
+  animation: ping 2.5s infinite;
+  width: 20%;
+  height: 20%;
+  top: 2%;
+  right: 2%;
+}
+@keyframes ping {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FiPhoneCall, FiLinkedin, FiGlobe } from 'react-icons/fi';
 import { SlEnvolope } from 'react-icons/sl';
 import Chip from '../alumniComponents/Chip';
 import { GoLocation } from 'react-icons/go';
@@ -34,7 +33,7 @@ function TalentCard({ result, studentId }) {
   const gotoProfile = () => {
     navigate(`/hr/candidate/${studentId}`);
   };
-
+  console.log(filteredTechSkills);
   return (
     <>
       <div
@@ -56,22 +55,29 @@ function TalentCard({ result, studentId }) {
                     {alumniInfo?.name}
                   </div>
                   <div className="text-sm text-gray-700 drop-shadow-lg">
-                    Student-Feb-23
+                    <Chip
+                      name={studentInfo?.cohortName?.slice(8)?.toUpperCase()}
+                      padding={2}
+                      round={'md'}
+                      customColor={'orange-100'}
+                      borderColor={'orange-200'}
+                    />
                   </div>
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <div className="flex gap-2">
+                <div className="flex gap-2 uppercase font-bold">
                   <Chip
-                    name="Full Stack Engineer"
-                    padding={2}
-                    round={'md'}
-                    customColor={'purple-300'}
-                    borderColor={'purple-300'}
+                    name={`${alumniInfo?.stack} Developer`}
+                    padding={3}
+                    round={'full'}
+                    customColor={'purple-100'}
+                    borderColor={'purple-200'}
+                    textColor={'purple-700'}
                   />
                 </div>
               </div>
-              {alumniInfo?.experiences.length > 0 ? (
+              {alumniInfo?.experiences?.length > 0 ? (
                 <>
                   <p className=" mt-1 leading-4 text-sm text-gray-700">
                     I've worked with <br />
@@ -97,36 +103,34 @@ function TalentCard({ result, studentId }) {
                   </span>
                 </>
               )}
-              <hr />
+
               <div className="card-actions justify-left mt-1 gap-1 flex flex-wrap py-1">
-                <Chip
-                  name={'React'}
-                  padding={2}
-                  round={'xl'}
-                  customColor={'white'}
-                  borderColor={'purple-300'}
-                />
-                <Chip
-                  name={'Node'}
-                  padding={2}
-                  round={'xl'}
-                  customColor={'white'}
-                  borderColor={'purple-300'}
-                />
-                <Chip
-                  name={'MongoDB'}
-                  padding={2}
-                  round={'xl'}
-                  customColor={'white'}
-                  borderColor={'purple-300'}
-                />
-                <Chip
-                  name={'Express'}
-                  padding={2}
-                  round={'xl'}
-                  customColor={'white'}
-                  borderColor={'purple-300'}
-                />
+                {filteredTechSkills?.map((skill, index) => {
+                  return (
+                    skill?.marks > 7 && (
+                      <Chip
+                        key={index}
+                        name={skill?.skill?.skillName}
+                        padding={2}
+                        round={'lg'}
+                        customColor={
+                          skill?.skill?.stack?.includes('frontend')
+                            ? 'purple-100'
+                            : skill?.skill?.stack?.includes('backend')
+                            ? 'blue-100'
+                            : 'rose-100'
+                        }
+                        borderColor={
+                          skill?.skill?.stack?.includes('frontend')
+                            ? 'purple-200'
+                            : skill?.skill?.stack?.includes('backend')
+                            ? 'blue-200'
+                            : 'rose-200'
+                        }
+                      />
+                    )
+                  );
+                })}
               </div>
             </div>
           </div>

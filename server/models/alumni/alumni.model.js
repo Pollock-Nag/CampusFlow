@@ -98,6 +98,7 @@ const alumniSchema = new mongoose.Schema({
   ],
   stack: {
     type: String,
+    default: 'fullstack',
   },
 });
 const Alumni = mongoose.model('Alumni', alumniSchema);

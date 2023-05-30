@@ -9,7 +9,10 @@ function GlobeComponent() {
 
     // Auto-rotate
     globe.controls().autoRotate = true;
-    globe.controls().autoRotateSpeed = 1;
+    globe.controls().autoRotateSpeed = 4;
+
+    globe.controls().minDistance = 350; // Minimum zoom level
+    globe.controls().maxDistance = 350; // Maximum zoom level
 
     // Add clouds sphere
     const CLOUDS_IMG_URL = './clouds.png'; // from https://github.com/turban/webgl-earth
@@ -57,27 +60,28 @@ function GlobeComponent() {
 
   console.log(gData);
   return (
-    <div className="bg-purple-900 h-screen">
-      <Globe
-        ref={globeEl}
-        width={1000}
-        animateIn={true}
-        backgroundColor="black"
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-        htmlElementsData={gData}
-        htmlElement={(d) => {
-          const el = document.createElement('div');
-          el.innerHTML = d.markerSvg;
-          el.style.color = d.color;
-          el.style.width = `${d.size}px`;
+    // <div className="bg-purple-900 h-screen w-">
+    <Globe
+      // pointerEventsFilter={'none'}
+      ref={globeEl}
+      width={800}
+      animateIn={true}
+      backgroundColor="#ffffff00"
+      globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg" // Use a different Earth texture image without zoom-out effect
+      htmlElementsData={gData}
+      htmlElement={(d) => {
+        const el = document.createElement('div');
+        el.innerHTML = d.markerSvg;
+        el.style.color = d.color;
+        el.style.width = `${d.size}px`;
 
-          el.style['pointer-events'] = 'auto';
-          el.style.cursor = 'pointer';
-          el.onclick = () => console.info(d);
-          return el;
-        }}
-      />
-    </div>
+        el.style['pointer-events'] = 'auto';
+        el.style.cursor = 'pointer';
+        el.onclick = () => console.info(d);
+        return el;
+      }}
+    />
+    // </div>
   );
 }
 

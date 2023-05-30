@@ -32,19 +32,18 @@ const ProjectSection = ({ projects }) => {
   };
 
   const handleThesisProject = () => {
-    setProjectType('thesis');
     setOpen(true);
-    console.log('Testing ', thesisProject);
-
+    setProjectType('thesis');
     // <AlumniPortfolioModalView project={thesisProject} />;
     // alert('thesis project clicked');
   };
   const handleSoloProject = () => {
-    setProjectType('solo');
     setOpen(true);
+    setProjectType('solo');
   };
   const handleLegacyProject = () => {
     setProjectType('legacy');
+
     setOpen(true);
   };
   const handlePersonalProject = () => {

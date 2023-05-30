@@ -20,6 +20,14 @@ export const alumniApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    addAlumniStack: builder.mutation({
+      query: (data) => ({
+        url: `/alumni/addStack/${data.id}`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -27,4 +35,5 @@ export const {
   useConvertToAlumniMutation,
   useGetAlumniByIdQuery,
   useAddAlumniInfoMutation,
+  useAddAlumniStackMutation,
 } = alumniApi;

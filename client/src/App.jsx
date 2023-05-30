@@ -34,6 +34,7 @@ import { Toaster } from 'react-hot-toast';
 import AlumniPortfolio from './pages/AlumniPortfolio';
 import AlumniEducation from './pages/AlumniEducation';
 import AlumniExperience from './pages/AlumniExperience';
+import ChangeStack from './components/alumniComponents/UpdateProfile/ChangeStack';
 
 import HRloginPage from './pages/HR/HRloginPage';
 import HRQuesetions from './pages/HR/HRQuestions.page';
@@ -41,6 +42,8 @@ import HRSearchResults from './pages/HR/HRSearchResults.page';
 import HRCandidatePreview from './pages/HR/HRCandidatePreview.page';
 import PrivateRoute from './components/common/PrivateRoute';
 import PublicRoute from './components/common/PublicRoute';
+import GlobeComponent from './components/HR/GlobeComponent';
+import HRLanding from './pages/HR/HRLanding.page';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
@@ -106,13 +109,14 @@ function App() {
             <Route path="add-project" element={<ProjectForm />} />
             <Route path="education" element={<AlumniEducation />} />
             <Route path="experience" element={<AlumniExperience />} />
-            {/* <Route path="logout" element={<LogoutPage />} /> */}
+            <Route path="changestack" element={<ChangeStack />} />
           </Route>
           <Route path="hr">
             <Route path="login" element={<HRloginPage />} />
             <Route path="query" element={<HRQuesetions />} />
             <Route path="query-results" element={<HRSearchResults />} />
             <Route path="candidate/:id" element={<HRCandidatePreview />} />
+            <Route path="welcome" element={<HRLanding />} />
           </Route>
           <Route
             path="*"

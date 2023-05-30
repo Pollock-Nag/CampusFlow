@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for campusflowpollock on 2023-05-28T17:22:59+06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "campusflowpollock"
+primary_region = "sin"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+
+[env]
+  PORT="3000"
+  MONGODB_URI="mongodb+srv://zahid:zahid@testingdb.ifnogcp.mongodb.net/campusFlow"
+  GITHUB_CLIENT_ID= "9d1c7643a36826dd9a94"
+  GITHUB_CLIENT_SECRET= "f1d1cbfb33ad53a2e40d39f4dc34220897e97019"
+  GITHUB_ORG_NAME= "student-tool"
+  GITHUB_PERSONAL_TOKEN= "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"

@@ -97,13 +97,14 @@ const AlumniProfile = () => {
             <div className="flex-[0.3] flex flex-col gap-5">
               <AlumniInfoCard
                 alumniInfo={alumniInfo}
+                cohort={studentInfo?.cohortName}
                 githubUsername={studentInfo?.githubUsername}
               />
               <Experience alumniInfo={alumniInfo} />
 
               {/* <LanguageStats /> */}
 
-              <div className="p-2 bg-white rounded-2xl min-h-[39vh] shadow-md ">
+              <div className="p-2 bg-white rounded-2xl min-h-[31vh] shadow-sm ">
                 <div className="tabs">
                   <button
                     className={`tab tab-lifted tab-lg ${activeTab1} text-lg `}

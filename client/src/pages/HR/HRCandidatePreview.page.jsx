@@ -81,8 +81,6 @@ function HRCandidatePreview() {
       })
     );
   }, [filteredTechSkills]);
-
-  console.log(studentInfo);
   return (
     <HRLayout>
       <div className="flex gap-4 m-4 ">
@@ -90,6 +88,7 @@ function HRCandidatePreview() {
           <AlumniInfoCard
             alumniInfo={alumniInfo}
             githubUsername={studentInfo?.githubUsername}
+            cohort={studentInfo?.cohortName}
           />
           <Experience alumniInfo={alumniInfo} />
 
