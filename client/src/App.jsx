@@ -98,6 +98,7 @@ function App() {
             />
             <Route path="projectcode/" element={<AlumniProjectcode />} />
             <Route path="portfolio" element={<Portfolio />} />
+
             <Route path="profile/portfolio" element={<AlumniPortfolio />} />
             <Route path="education" element={<AlumniEducation />} />
 
