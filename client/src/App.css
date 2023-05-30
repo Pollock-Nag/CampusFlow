@@ -197,12 +197,12 @@ body {
 
 .Typewriter{
   color: #ffffff!important;
-  margin-top: 600px;
+  margin-top: 30rem;
 
-  font-size: 12rem;
+  font-size: 8rem;
   text-align: center;
 
-  margin-left: 300px;
+  margin-left: 20rem;
 }
 .Typewriter span{
   text-align: center;
