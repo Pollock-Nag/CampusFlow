@@ -101,7 +101,7 @@ function AlumniPortfolioModalView({ project }) {
               <tr>
                 <td className="text-xl font-light">Verticals</td>
                 <td className="text-xl font-light text-gray-400 flex gap-3 py-2">
-                  {project?.industry.map((industry, i) => (
+                  {project?.industry?.map((industry, i) => (
                     <div className=" " key={i}>
                       {/* {tech} */}
                       <Chip
@@ -133,26 +133,17 @@ function AlumniPortfolioModalView({ project }) {
               </tr>
               <tr>
                 {/* doneby */}
-                <td className="text-xl font-light py-3">Done By</td>
-                <td className="text-xl font-light text-gray-400 flex gap-3 py-3">
-                  {collaborators?.map((collaborator, i) => (
+                <td className="text-xl font-light py-3">Third Party API's</td>
+                <td className="text-xl font-light text-gray-400 flex gap-3 py-2">
+                  {project?.thirdPartyApi?.map((thirdPartyApi, i) => (
                     <div className=" " key={i}>
-                      {/* <Chip
-                        name={collaborator?.login}
+                      {/* {tech} */}
+                      <Chip
+                        name={thirdPartyApi}
                         customColor={'gray-100'}
-                        padding={3}
+                        padding={4}
                         borderColor={'purple-200'}
-                      /> */}
-                      <a
-                        href={`https://github.com/${collaborator?.login}`}
-                        target="_blank"
-                      >
-                        <div className="avatar">
-                          <div className="w-10 rounded-full">
-                            <img src={collaborator?.avatar_url} />
-                          </div>
-                        </div>
-                      </a>
+                      />
                     </div>
                   ))}
                 </td>

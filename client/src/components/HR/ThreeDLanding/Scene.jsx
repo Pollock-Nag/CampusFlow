@@ -8,7 +8,7 @@ import { Objects } from './Objects';
 import { Particles } from './Particles';
 import Button3D from './ThreeDButton';
 
-function Scene() {
+function Scene({ handleOpen }) {
   useFrame(({ mouse, camera }) => {
     camera.position.x = THREE.MathUtils.lerp(
       camera.position.x,
@@ -42,7 +42,7 @@ function Scene() {
         </Scroll>
 
         <Scroll html>
-          <Html />
+          <Html handleOpen={handleOpen} />
         </Scroll>
       </ScrollControls>
     </>
