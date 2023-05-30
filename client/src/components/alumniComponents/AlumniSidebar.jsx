@@ -41,6 +41,10 @@ const AlumniSidebar = () => {
     console.log('Certification');
   };
   const handleExperience = () => {
+    navigate('/alumni/experience');
+  };
+
+  const handleChangeStack = () => {
     navigate('/alumni/changestack');
   };
 
@@ -90,7 +94,7 @@ const AlumniSidebar = () => {
             </a>
           </li>
           <li>
-            <a onClick={handleExperience}>
+            <a onClick={handleChangeStack}>
               <FaTools color="gray" /> Change Stack
             </a>
           </li>

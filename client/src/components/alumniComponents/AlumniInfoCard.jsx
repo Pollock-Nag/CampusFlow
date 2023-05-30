@@ -1,9 +1,10 @@
 import React from 'react';
 import { FiPhoneCall, FiLinkedin, FiGlobe } from 'react-icons/fi';
+import { FaUserTie } from 'react-icons/fa';
 import { SlEnvolope } from 'react-icons/sl';
 import Chip from './Chip';
 
-function AlumniInfoCard({ alumniInfo, githubUsername }) {
+function AlumniInfoCard({ alumniInfo, githubUsername, cohort }) {
   const socialButtonClick = (type) => {
     // alert(type);
     if (type === 'phone') {
@@ -42,20 +43,37 @@ function AlumniInfoCard({ alumniInfo, githubUsername }) {
   };
 
   const cardHead = (
-    <div className="flex gap-3 items-center">
-      <div className="w-16 rounded-xl bg-[#C39AF7]">
-        <img
-          src={`https://avatars.githubusercontent.com/${githubUsername}`}
-          className="rounded-2xl p-1 shadow-xl"
-        />
+    <div className="flex justify-between">
+      <div className="flex gap-3 items-center">
+        <div className="avatar online w-16 rounded-xl">
+          <img
+            src={`https://avatars.githubusercontent.com/${githubUsername}`}
+            className="rounded-2xl p-1 shadow-xl"
+          />
+        </div>
+        <div className="">
+          <div className="text-xl font-semibold text-purple-700 drop-shadow-lg">
+            {alumniInfo?.name}
+          </div>
+          <div className="text-sm font-semibold">
+            <Chip
+              name={cohort?.slice(8)?.toUpperCase()}
+              customColor={'purple-200'}
+              borderColor={'purple-300'}
+              padding={'3'}
+            />
+          </div>
+        </div>
       </div>
-      <div className="">
-        <div className="text-xl font-semibold text-purple-700 drop-shadow-lg ">
-          {alumniInfo?.name}
-        </div>
-        <div className="text-sm text-gray-700 drop-shadow-lg ">
-          Junior Software Engineer
-        </div>
+      <div>
+        <button
+          className="btn btn-sm bg-purple-300 text-purple-700
+        hover:bg-purple-400 hover:text-white outline-none border-none shadow-md
+        animate-pulse"
+        >
+          <FaUserTie fontSize={16} color="purple" />
+          &nbsp; Hire
+        </button>
       </div>
     </div>
   );
@@ -90,13 +108,10 @@ function AlumniInfoCard({ alumniInfo, githubUsername }) {
   return (
     <>
       <div className="card h-auto bg-base-100 shadow-md">
-        <div className="card-body p-5">
+        <div className="card-body p-5 capitalize">
           {cardHead}
-          <p className=" mt-3 text-justify leading-5 text-md text-gray-600">
-            {alumniInfo?.about}
-          </p>
           <Chip
-            name="Full Stack Developer"
+            name={`${alumniInfo?.stack} Developer`}
             customColor={'gray-200'}
             borderColor={'purple-200'}
             padding={'3'}
