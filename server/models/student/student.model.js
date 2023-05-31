@@ -54,6 +54,19 @@ const StudentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Alumni',
   },
+
+  // for ml part
+  personalityType: {
+    type: Number,
+  },
+  personalityRating: {
+    // type should be object of object of array
+    type: [Number],
+    default: [
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0,
+    ],
+  },
 });
 
 const Student = mongoose.model('Student', StudentSchema);

@@ -1,5 +1,6 @@
 const Student = require('../models/student/student.model');
 const Alumni = require('../models/alumni/alumni.model');
+const axios = require('axios');
 // const Skill = require('../models/skill/skill.model');
 
 // util functions
@@ -95,9 +96,6 @@ const stackWiseFilter = async (req, res) => {
       });
     }
 
-    //  filtered by frontend, backend, fullstack
-    // let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
-
     if (stackType === 'frontend') {
       let frontendResult = filterAlumniListByStackType(
         stackType,
@@ -120,69 +118,32 @@ const stackWiseFilter = async (req, res) => {
       );
       return res.status(200).send(fullStackResult);
     }
-
-    // if (stackType === 'frontend') {
-    //   let tempFilter = [];
-    //   let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
-
-    //   let filteredAlumniListByFullStack = filterByStack(
-    //     allAlumniList,
-    //     'fullstack'
-    //   );
-
-    //   const filteredFrontendAlumnus = [
-    //     ...filteredAlumniListByStack,
-    //     ...filteredAlumniListByFullStack,
-    //   ];
-
-    //   frontendResult = filterBySkillsId(
-    //     filteredFrontendAlumnus,
-    //     tempFilter,
-    //     skilltypeIds
-    //   );
-
-    //   return res.send(sortBySum(frontendResult));
-    // } else if (stackType === 'backend') {
-    //   let tempFilter = [];
-    //   let filteredAlumniListByStack = filterByStack(allAlumniList, stackType);
-    //   let filteredAlumniListByFullStack = filterByStack(
-    //     allAlumniList,
-    //     'fullstack'
-    //   );
-
-    //   const filteredBackendAlumnus = [
-    //     ...filteredAlumniListByStack,
-    //     ...filteredAlumniListByFullStack,
-    //   ];
-
-    //   backendResult = filterBySkillsId(
-    //     filteredBackendAlumnus,
-    //     tempFilter,
-    //     skilltypeIds
-    //   );
-
-    //   return res.send(sortBySum(backendResult));
-    // } else if (stackType === 'fullstack') {
-    //   let tempFilter = [];
-    //   let filteredAlumniListByFullStack = filterByStack(
-    //     allAlumniList,
-    //     'fullstack'
-    //   );
-
-    //   fullStackResult = filterBySkillsId(
-    //     filteredAlumniListByFullStack,
-    //     tempFilter,
-    //     skilltypeIds
-    //   );
-
-    //   return res.status(200).send(sortBySum(fullStackResult));
-    // }
   } catch (err) {
     console.log(err);
     res.status(500).send('Internal Server Error');
   }
 };
 
+const getMLmatch = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const student = await Student.findById(id);
+    const { pesonlaityType, personalityRating } = student;
+
+    // axios diya call marbo ml endpoint e
+    const mlResult = await axios.post('http://127.0.0.1:5000/predict', {
+      features: personalityRating,
+    });
+    res.status(200).send(mlResult.data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+// const allAlumni = await Student.find({type: 'alumni'});
+
 module.exports = {
   stackWiseFilter,
+  getMLmatch,
 };

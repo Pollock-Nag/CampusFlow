@@ -25,10 +25,10 @@ function TalentCard({ result, studentId }) {
   const alumniInfo = result?.alumniDetails;
   const navigate = useNavigate();
   const latestExperience =
-    alumniInfo?.experiences[alumniInfo?.experiences.length - 1];
+    alumniInfo?.experiences[alumniInfo?.experiences?.length - 1];
 
   const latestEducation =
-    alumniInfo?.education[alumniInfo?.education.length - 1];
+    alumniInfo?.education[alumniInfo?.education?.length - 1];
 
   const gotoProfile = () => {
     navigate(`/hr/candidate/${studentId}`);

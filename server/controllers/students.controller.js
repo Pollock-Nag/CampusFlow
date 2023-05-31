@@ -623,6 +623,10 @@ const getStudentWeekInfoByType = async (req, res) => {
   }
 };
 
+// const insertPersonalityRating = async (req, res) => {
+//   const { id } = req.params;
+//   const { personalityRating } = req.body;     // [ { 1: { 1: 1, 2: 2, 3: 3, 4: 4 } }, { 2: { 1: 1, 2: 2, 3: 3, 4: 4 } } ]
+
 module.exports = {
   getAllStudents,
   getAllActiveStudents,

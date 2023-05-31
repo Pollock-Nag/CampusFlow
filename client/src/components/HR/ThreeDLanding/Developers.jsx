@@ -14,7 +14,7 @@ const Developers = () => {
         >
           <div className="inner title">
             <div className="dev-headline">Zahid Ul Islam</div>
-            <span>Web Developer</span>
+            <span>Software Engineer</span>
           </div>
         </div>
 
@@ -38,7 +38,7 @@ const Developers = () => {
         >
           <div className="inner title">
             <div className="dev-headline">Pollock Nag</div>
-            <span>Web Developer</span>
+            <span>Software Engineer</span>
           </div>
         </div>
 
@@ -63,16 +63,16 @@ const Developers = () => {
         >
           <div className="inner title">
             <div className="dev-headline">Saimon Siddique</div>
-            <span>Web Developer</span>
+            <span>Software Engineer</span>
           </div>
         </div>
 
         <div className="back">
           <div className="inner">
             <div className="text-md">
-              I am a web developer. I spend my whole day, practically every day,
-              experimenting with HTML, CSS, and JavaScript; dabbling with React
-              & Node.
+              I am a Software Engineer. I spend my whole day, practically every
+              day, experimenting with HTML, CSS, and JavaScript; dabbling with
+              React & Node.
             </div>
           </div>
         </div>
