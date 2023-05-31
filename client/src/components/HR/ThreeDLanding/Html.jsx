@@ -75,9 +75,21 @@ function Html({ handleOpen }) {
         </div>
       </div>
       <div
+        className="animate-pulse text-4xl"
         style={{
           position: 'absolute',
           top: '250vh',
+          left: '50vw',
+          transform: 'translateX(-50%)',
+          color: 'white',
+        }}
+      >
+        Proudly Developed By{' '}
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: '260vh',
           left: '50vw',
           transform: 'translateX(-50%)',
           color: 'white',
