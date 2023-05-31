@@ -24,11 +24,18 @@ module.exports = talentRequest = async (req, res) => {
   });
 
   const {
+    talentId,
+    talentName,
     hrName,
     hrEmail,
-    hrSearchQuery,
-    selectedTalentName,
-    selectedTalentID,
+    hireType,
+    whenNeeded,
+    contactNo,
+    companyName,
+    stack,
+    frontendSkills,
+    backendSkills,
+    industries,
   } = req.body;
 
   const response = {
@@ -37,33 +44,45 @@ module.exports = talentRequest = async (req, res) => {
       intro: 'Request for Talent Acquisition',
       action: {
         instructions:
-          'This HR has requested for your talent. Please contact them at the email below.',
-        table: {
-          data: [
-            {
-              'HR Name': hrName,
-              'HR Email': hrEmail,
-              'HR Search Query': hrSearchQuery,
-              'Selected Talent': `<a href="${ENV.SITE_URL}/hr/candidate/${selectedTalentID}">${selectedTalentName}</a>`,
-            },
-          ],
-          columns: {
-            // Define the column headers
-            customColumnNames: {
-              'HR Name': 'HR Name',
-              'HR Email': 'HR Email',
-              'HR Search Query': 'HR Search Query',
-              'Selected Talent': 'Selected Talent',
-            },
-            // Define the column widths (optional)
-            customColumnWidths: {
-              'HR Name': '20%',
-              'HR Email': '20%',
-              'HR Search Query': '30%',
-              'Selected Talent': '30%',
-            },
-          },
-        },
+          'This HR has requested for your talent. Please contact them at the email below.' +
+          '<br><br>' +
+          'HR Name: ' +
+          hrName +
+          '<br>' +
+          'HR Email: ' +
+          hrEmail +
+          '<br>' +
+          'Contact No: ' +
+          contactNo +
+          '<br>' +
+          'Company Name: ' +
+          companyName +
+          '<br><br>' +
+          'Selected Talent: ' +
+          talentName +
+          '<br>' +
+          'Profile Link: ' +
+          'https://talent.projectcode.me/talent/' +
+          talentId +
+          '<br><br>' +
+          'Hire Type: ' +
+          hireType +
+          '<br>' +
+          'When Needed: ' +
+          whenNeeded +
+          '<br><br>' +
+          'Stack: ' +
+          stack +
+          '<br>' +
+          'Frontend Skills: ' +
+          frontendSkills +
+          '<br>' +
+          'Backend Skills: ' +
+          backendSkills +
+          '<br>' +
+          'Industries: ' +
+          industries,
+
         button: {
           color: '#22BC66',
           text: 'Contact HR',
@@ -85,9 +104,9 @@ module.exports = talentRequest = async (req, res) => {
 
   const emailBody = mailGenerator.generate(response);
 
-  const messageToCandidate = {
+  const messageToProjectCode = {
     from: ENV.EMAIL,
-    to: 'zahidtwt@gmail.com',
+    to: 'hello@projectcode.me',
     subject: 'Request for Talent Acquisition',
     html: emailBody,
   };
@@ -100,7 +119,7 @@ module.exports = talentRequest = async (req, res) => {
   };
 
   try {
-    await transporter.sendMail(messageToCandidate);
+    await transporter.sendMail(messageToProjectCode);
     await transporter.sendMail(messageToHR);
     return res.status(200).send({ msg: 'New Talent Requisation' });
   } catch (error) {

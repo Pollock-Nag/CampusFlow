@@ -12,6 +12,7 @@ import { useGetAlumniByIdQuery } from '../../features/alumni/alumniApi';
 import { useGetStudentByIdQuery } from '../../features/student/studentApi';
 import { useParams } from 'react-router-dom';
 import HRLayout from '../../components/HR/HRLayout';
+import { Toaster } from 'react-hot-toast';
 
 function HRCandidatePreview() {
   const [activeTab1, setActiveTab1] = useState('tab-active');
@@ -83,9 +84,11 @@ function HRCandidatePreview() {
   }, [filteredTechSkills]);
   return (
     <HRLayout>
+      <Toaster />
       <div className="flex gap-4 m-4 ">
         <div className="flex-[0.3] flex flex-col gap-5">
           <AlumniInfoCard
+            studentId={studentInfo?._id}
             alumniInfo={alumniInfo}
             githubUsername={studentInfo?.githubUsername}
             cohort={studentInfo?.cohortName}

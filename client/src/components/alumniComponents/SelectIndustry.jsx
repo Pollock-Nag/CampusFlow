@@ -21,6 +21,7 @@ const SelectIndustry = ({ setProjectCategory }) => {
     setSelectedIndustry(value);
     setProjectCategory(value);
   };
+  setProjectCategory(selectedIndustry);
 
   return (
     <Autocomplete

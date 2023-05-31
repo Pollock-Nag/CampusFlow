@@ -16,8 +16,6 @@ import SelectIndustry from '../../components/alumniComponents/SelectIndustry';
 import { usePostStackWiseFilterMutation } from '../../features/ hr/hrApi';
 import SelectableChips from './SelectableChips';
 import BeautifulCheckbox from './BeautifulCheckbox';
-import { useDispatch } from 'react-redux';
-import { queryResult } from '../../features/ hr/hrSlice';
 
 import { useNavigate } from 'react-router-dom';
 const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
@@ -140,7 +138,7 @@ export default function HRMultiSteps() {
   const [stack, setStack] = useState('');
   const [frontendSkill, setFrontendSkill] = useState([]);
   const [backendSkill, setBackendSkill] = useState([]);
-  const dispatch = useDispatch();
+  const [industry, setIndustry] = useState([]);
   const navigate = useNavigate();
 
   const [filterCanidate, { data, loading, error }] =
@@ -164,12 +162,16 @@ export default function HRMultiSteps() {
 
   const handleSubmit = () => {
     let skilltypeIds;
+    const frontEndSkillIds = frontendSkill.map((skill) => skill._id);
+    const backEndSkillIds = backendSkill.map((skill) => skill._id);
+    const frontEndSkillNames = frontendSkill.map((skill) => skill.skillName);
+    const backEndSkillNames = backendSkill.map((skill) => skill.skillName);
     if (stack === 'frontend') {
-      skilltypeIds = frontendSkill;
+      skilltypeIds = frontEndSkillIds;
     } else if (stack === 'backend') {
-      skilltypeIds = backendSkill;
+      skilltypeIds = backEndSkillIds;
     } else {
-      skilltypeIds = frontendSkill.concat(backendSkill);
+      skilltypeIds = frontEndSkillIds.concat(backEndSkillIds);
     }
 
     const query = {
@@ -177,6 +179,13 @@ export default function HRMultiSteps() {
       skill: skilltypeIds,
     };
     filterCanidate(query);
+    const storeQuery = {
+      stack: stack,
+      frontendSkill: frontEndSkillNames,
+      backendSkill: backEndSkillNames,
+      industries: industry,
+    };
+    localStorage.setItem('hrquery', JSON.stringify(storeQuery));
 
     navigate('/hr/query-results');
   };
@@ -194,7 +203,7 @@ export default function HRMultiSteps() {
           />
         );
       case 2:
-        return <SelectIndustry />;
+        return <SelectIndustry setProjectCategory={setIndustry} />;
       default:
         return null;
     }

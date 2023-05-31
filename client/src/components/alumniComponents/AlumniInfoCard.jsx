@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, Divider, Modal, Typography } from '@mui/material';
 import { FiPhoneCall, FiLinkedin, FiGlobe } from 'react-icons/fi';
 import { FaUserTie } from 'react-icons/fa';
 import { SlEnvolope } from 'react-icons/sl';
 import Chip from './Chip';
+import HireRequestForm from '../HR/HireForm';
 
-function AlumniInfoCard({ alumniInfo, githubUsername, cohort }) {
+function AlumniInfoCard({ alumniInfo, githubUsername, cohort, studentId }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleHireClick = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   const socialButtonClick = (type) => {
     // alert(type);
     if (type === 'phone') {
@@ -68,11 +79,12 @@ function AlumniInfoCard({ alumniInfo, githubUsername, cohort }) {
       </div>
       <div>
         <button
-          className="btn btn-sm bg-purple-300 text-purple-700
-        hover:bg-purple-400 hover:text-white outline-none border-none shadow-md
-        animate-pulse"
+          className="btn btn-sm bg-indigo-300 text-indigo-700
+        hover:bg-indigo-400 hover:text-white outline-none border-none shadow-md
+        "
+          onClick={handleHireClick}
         >
-          <FaUserTie fontSize={16} color="purple" />
+          <FaUserTie fontSize={16} color="indigo" />
           &nbsp; Hire
         </button>
       </div>
@@ -109,6 +121,28 @@ function AlumniInfoCard({ alumniInfo, githubUsername, cohort }) {
   return (
     <>
       <div className="card h-auto bg-base-100 shadow-md">
+        <Modal open={isOpen} onClose={handleClose} sx={{}}>
+          <div
+            className="bg-white p-10 rounded-2xl"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 400,
+              // bgcolor: 'purple.100',
+              p: 4,
+            }}
+          >
+            <Divider>
+              <Typography variant="h5">Hire Request Form</Typography>
+            </Divider>
+            <HireRequestForm
+              talentId={studentId}
+              talentName={alumniInfo?.name}
+            />
+          </div>
+        </Modal>
         <div className="card-body p-5 capitalize">
           {cardHead}
           <Chip
