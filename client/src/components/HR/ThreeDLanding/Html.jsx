@@ -58,7 +58,7 @@ function Html({ handleOpen }) {
             // transform: 'translateX(-50%)',
             color: 'white',
           }}
-          class="animate-pulse button w-60 h-16 bg-purple-500  cursor-pointer select-none translate-x-[-50%]
+          className="animate-pulse button w-60 h-16 bg-purple-500  cursor-pointer select-none translate-x-[-50%]
     active:translate-y-2  active:[box-shadow:0_0px_0_0_#7109b3,0_0px_0_0_#7109b341]
     active:border-b-[0px]
     transition-all duration-150 [box-shadow:0_10px_0_0_#7109b3,0_15px_0_0_#7109b341]
@@ -67,7 +67,7 @@ function Html({ handleOpen }) {
   "
         >
           <span
-            class="flex flex-col justify-center items-center h-full text-white font-bold text-xl "
+            className="flex flex-col justify-center items-center h-full text-white font-bold text-xl "
             onClick={handleOpen}
           >
             FIND TALENTS

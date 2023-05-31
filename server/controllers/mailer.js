@@ -1,8 +1,10 @@
 // npm i nodemailer mailgen
 const nodemailer = require('nodemailer');
 const Mailgen = require('mailgen');
+require('dotenv').config();
+const ENV = process.env;
 
-module.exports = registerMail = async (req, res) => {
+module.exports = talentRequest = async (req, res) => {
   let config = {
     service: 'gmail',
     auth: {
@@ -16,46 +18,91 @@ module.exports = registerMail = async (req, res) => {
   const mailGenerator = new Mailgen({
     theme: 'default',
     product: {
-      name: 'ParkLink',
-      link: 'zahid.live',
+      name: 'Project Code Talent',
+      link: 'talent.projectcode.me',
     },
   });
 
-  const { username, userEmail, subject, otpCode } = req.body;
+  const {
+    hrName,
+    hrEmail,
+    hrSearchQuery,
+    selectedTalentName,
+    selectedTalentID,
+  } = req.body;
 
   const response = {
     body: {
-      name: username,
-      intro: 'Your OTP code is: ' + otpCode,
-      code: otpCode,
+      name: 'Project Code',
+      intro: 'Request for Talent Acquisition',
       action: {
         instructions:
-          'To verify your account, enter the code above on the verification page.',
+          'This HR has requested for your talent. Please contact them at the email below.',
+        table: {
+          data: [
+            {
+              'HR Name': hrName,
+              'HR Email': hrEmail,
+              'HR Search Query': hrSearchQuery,
+              'Selected Talent': `<a href="${ENV.SITE_URL}/hr/candidate/${selectedTalentID}">${selectedTalentName}</a>`,
+            },
+          ],
+          columns: {
+            // Define the column headers
+            customColumnNames: {
+              'HR Name': 'HR Name',
+              'HR Email': 'HR Email',
+              'HR Search Query': 'HR Search Query',
+              'Selected Talent': 'Selected Talent',
+            },
+            // Define the column widths (optional)
+            customColumnWidths: {
+              'HR Name': '20%',
+              'HR Email': '20%',
+              'HR Search Query': '30%',
+              'Selected Talent': '30%',
+            },
+          },
+        },
         button: {
           color: '#22BC66',
-          text: 'Verify Account',
-          link: `http://localhost.com:3000/verify/${username}?code=${otpCode}`,
-          logo: 'https://svgur.com/i/s56.svg',
+          text: 'Contact HR',
+          link: 'mailto:' + hrEmail,
         },
       },
-      outro: 'If you have any questions, feel free to reply to this email.',
+      // outro: 'If you have any questions, feel free to reply to this email.',
     },
   };
 
+  const hrEmailBody = mailGenerator.generate({
+    body: {
+      name: 'Hello, ' + hrName,
+      intro: 'Request Received Successfully',
+      outro:
+        'We have successfully received your request for talent acquisition. Our team will review the details and contact you soon with further information. Thank you for choosing Project Code Talent.',
+    },
+  });
+
   const emailBody = mailGenerator.generate(response);
 
-  const message = {
+  const messageToCandidate = {
     from: ENV.EMAIL,
-    to: userEmail,
-    subject: 'Welcome to ParkLink',
+    to: 'zahidtwt@gmail.com',
+    subject: 'Request for Talent Acquisition',
     html: emailBody,
   };
 
+  const messageToHR = {
+    from: ENV.EMAIL,
+    to: hrEmail,
+    subject: 'Request Received - Project Code Talent',
+    html: hrEmailBody,
+  };
+
   try {
-    await transporter.sendMail(message);
-    return res
-      .status(200)
-      .send({ msg: 'You should receive an email from us.' });
+    await transporter.sendMail(messageToCandidate);
+    await transporter.sendMail(messageToHR);
+    return res.status(200).send({ msg: 'New Talent Requisation' });
   } catch (error) {
     return res.status(500).send({ error });
   }
