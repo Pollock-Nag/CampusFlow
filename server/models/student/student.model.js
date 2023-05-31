@@ -60,7 +60,7 @@ const StudentSchema = new mongoose.Schema({
     type: Number,
   },
   personalityRating: {
-    // type should be object of object of array
+    // type decimal upto 3 places
     type: [Number],
     default: [
       0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
