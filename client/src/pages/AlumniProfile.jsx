@@ -13,6 +13,7 @@ import { useGetStudentByIdQuery } from '../features/student/studentApi';
 import { useSelector } from 'react-redux';
 import Lottie from 'lottie-react';
 import fourzerofour from '../assets/fourzerofour.json';
+import LanguageStats from '../components/alumniComponents/LanguageStats';
 
 const AlumniProfile = () => {
   const [activeTab1, setActiveTab1] = useState('tab-active');
@@ -102,9 +103,7 @@ const AlumniProfile = () => {
               />
               <Experience alumniInfo={alumniInfo} />
 
-              {/* <LanguageStats /> */}
-
-              <div className="p-2 bg-white rounded-2xl min-h-[31vh] shadow-sm ">
+              <div className="p-2 bg-white rounded-2xl min-h-[20vh] shadow-sm ">
                 <div className="tabs">
                   <button
                     className={`tab tab-lifted tab-lg ${activeTab1} text-lg `}
@@ -134,6 +133,11 @@ const AlumniProfile = () => {
                 {activeTab3 === 'tab-active' ? (
                   <SkillsTabs type={'testing'} skills={testing} />
                 ) : null}
+              </div>
+
+              {/* langhuage stats */}
+              <div className="">
+                <LanguageStats githubUsername={studentInfo?.githubUsername} />
               </div>
             </div>
             <div className="flex-[0.7] flex flex-col gap-5">

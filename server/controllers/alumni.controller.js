@@ -1,5 +1,8 @@
 const Alumni = require('../models/alumni/alumni.model');
+// import PeerRatings from ('../models/student/peerRating.model');
+const PeerRatings = require('../models/student/peerRating.model');
 const Student = require('../models/student/student.model');
+
 const test = async (req, res) => {
   const name = req.query.name;
   await res.send(name);
@@ -142,6 +145,34 @@ const addStack = async (req, res) => {
   }
 };
 
+const insertPersonaityRating = async (req, res) => {
+  try {
+    const { id } = req.params; // student id
+    // console.log(id);
+    const result = await PeerRatings.find({
+      givenBy: id,
+    }).populate('givenTo');
+    const indexArray = result.map((item) => {
+      return item.givenTo.personalityType;
+    });
+    console.log(indexArray);
+
+    const student = await Student.findById(id);
+
+    const personalityRating = student.personalityRating;
+
+    for (let i = 0; i < indexArray.length; i++) {
+      personalityRating[indexArray[i] - 1] = (result[i].rate / 10).toFixed(3);
+    }
+
+    student.personalityRating = personalityRating;
+    await student.save();
+    res.status(200).send({ message: 'successfully save peerRating' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   test,
   convertToAlumni,
@@ -150,4 +181,5 @@ module.exports = {
   addSkills,
   getAlumniById,
   addStack,
+  insertPersonaityRating,
 };

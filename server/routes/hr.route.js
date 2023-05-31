@@ -5,5 +5,6 @@ const talentRequest = require('../controllers/mailer');
 
 router.post('/talentRequest', talentRequest);
 router.post('/stackWiseFilter', hrController.stackWiseFilter);
+router.get('/getMLmatch/:id', hrController.getMLmatch);
 
 module.exports = router;
