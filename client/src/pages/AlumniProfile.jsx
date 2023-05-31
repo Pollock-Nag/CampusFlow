@@ -103,7 +103,7 @@ const AlumniProfile = () => {
               />
               <Experience alumniInfo={alumniInfo} />
 
-              <div className="p-2 bg-white rounded-2xl min-h-[31vh] shadow-sm ">
+              <div className="p-2 bg-white rounded-2xl min-h-[20vh] shadow-sm ">
                 <div className="tabs">
                   <button
                     className={`tab tab-lifted tab-lg ${activeTab1} text-lg `}
@@ -134,11 +134,11 @@ const AlumniProfile = () => {
                   <SkillsTabs type={'testing'} skills={testing} />
                 ) : null}
               </div>
-              {/* <div className="bg-rose-500">
-                
-                HELLO below is your language stats
-                <LanguageStats />
-              </div> */}
+
+              {/* langhuage stats */}
+              <div className="">
+                <LanguageStats githubUsername={studentInfo?.githubUsername} />
+              </div>
             </div>
             <div className="flex-[0.7] flex flex-col gap-5">
               <div className="Charts">
