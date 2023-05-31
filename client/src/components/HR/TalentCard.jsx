@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SlEnvolope } from 'react-icons/sl';
+import { AiOutlineTeam } from 'react-icons/ai';
 import Chip from '../alumniComponents/Chip';
 import { GoLocation } from 'react-icons/go';
 import moment from 'moment';
@@ -40,8 +40,8 @@ function TalentCard({ result, studentId }) {
         className="my-3 card bg-base-100 border-2 border-purple-200 w-[60vw] hover:border-purple-400 cursor-pointer "
         onClick={gotoProfile}
       >
-        <div className=" flex justify-between mx-10">
-          <div className="">
+        <div className="flex justify-between mx-10">
+          <div className="w-96">
             <div className="card-body p-5">
               <div className="flex gap-3 items-center">
                 <div className="w-16 rounded-full bg-[#C39AF7]">
@@ -134,6 +134,16 @@ function TalentCard({ result, studentId }) {
               </div>
             </div>
           </div>
+          {/* Button */}
+          <div className="flex z-10 mt-4">
+            <button className="btn bg-purple-500 border-none flex items-center gap-2 hover:bg-purple-800 ">
+              <div className="mt-1">Build Team</div>
+              <div>
+                <AiOutlineTeam size={20} />
+              </div>
+            </button>
+          </div>
+          {/* Chart */}
           <div className="Charts">
             <div className="flex justify-between">
               <div className=" h-64 w-96 bg-white rounded-3xl p-5 ">
