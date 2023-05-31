@@ -67,4 +67,6 @@ router.get(
   studentsControllers.getStudentWeekInfoByType
 );
 
+router.post('/insertPerosnality/:id', studentsControllers.insertPersonality);
+
 module.exports = router;

@@ -1,9 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
-
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
+import personalityData from '../../assets/personalityList.json';
+import { useInsertPersonalityTypeMutation } from '../../features/student/studentApi';
+import { useParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 function StudentSidebar({ student }) {
+  const [selectedPersonality, setSelectedPersonality] = useState('');
   const location = useLocation();
+
+  const { id } = useParams();
+  const role = localStorage.getItem('role');
+
+  const [insertPersonality, { data, isSuccess }] =
+    useInsertPersonalityTypeMutation();
+
+  const handleChange = (event) => {
+    setSelectedPersonality(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const insertData = {
+      studentId: id,
+      personalityType: selectedPersonality,
+    };
+    insertPersonality(insertData);
+    setSelectedPersonality('');
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Personality Type Added Successfully');
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -32,6 +69,50 @@ function StudentSidebar({ student }) {
             </p>
           </div>
         </div>
+        {role === 'instructor' ? (
+          <div
+            className="m-auto flex flex-col
+        items-center justify-center gap-4"
+          >
+            <form className="flex flex-col items-center gap-2">
+              <div>
+                <FormControl>
+                  <InputLabel id="personality-select-label">
+                    Select Personality
+                  </InputLabel>
+                  <Select
+                    id="personality-select"
+                    label="Select Personality"
+                    style={{ width: '200px' }}
+                    placeholder="Select Personality"
+                    value={selectedPersonality}
+                    onChange={handleChange}
+                  >
+                    {Object.keys(personalityData).map((personality) => (
+                      <MenuItem
+                        key={personalityData[personality]}
+                        value={personalityData[personality]}
+                      >
+                        {personality}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="mt-4"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Confirm
+                </Button>
+              </div>
+            </form>
+          </div>
+        ) : null}
       </div>
       {/* </div> */}
     </>

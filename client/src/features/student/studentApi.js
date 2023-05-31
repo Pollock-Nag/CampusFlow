@@ -116,6 +116,14 @@ export const studentApi = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+
+    insertPersonalityType: builder.mutation({
+      query: (data) => ({
+        url: `/student/insertPerosnality/${data.studentId}`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -136,4 +144,5 @@ export const {
   useGetUnitMarksByStudentIDQuery,
   useSaveMidEndSeniorCheckpointMutation,
   useGetMidEndDataByStudentIDQuery,
+  useInsertPersonalityTypeMutation,
 } = studentApi;
