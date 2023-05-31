@@ -13,14 +13,14 @@ function HRSearchResults() {
       console.log(results);
       setTimeout(() => {
         setIsLoading(false);
-      }, 500);
+      }, 3000);
     }
   }, [results]);
 
   return (
     <>
       <div className="flex justify-between mx-10 p-2 px-5 bg-purple-100 shadow-xl  mb-5 ">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="btn btn-ghost normal-case text-xl">TalentGPT</a>
         <div className="flex">
           <div className="form-control ">
             <input

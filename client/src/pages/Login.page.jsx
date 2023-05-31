@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeCard from '../components/Login/CodeCard';
 import { FaGithub } from 'react-icons/fa';
-import logo from '../../public/projectcode.png';
+import logo from '../assets/projectcode.png';
 
 function LoginPage() {
   return (

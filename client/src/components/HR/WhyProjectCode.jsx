@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCheck } from 'react-icons/fa';
-
+import projectCodeLogo from '../../assets/projectcode.png';
 const companies = [
   {
     name: 'SELISE',
@@ -39,7 +39,7 @@ const companies = [
 const WhyProjectCode = () => {
   return (
     <div className="flex flex-col items-center h-[90vh] bg-white m-10 p-10 rounded-3xl shadow-lg">
-      <img className="w-64" src="/public/projectcodefull.png" alt="logo" />{' '}
+      <img className="w-24" src={projectCodeLogo} alt="logo" />{' '}
       <div className="flex flex-col justify-center">
         <div className="flex justify-center text-2xl font-bold  text-[#7E22CE] mt-5">
           Why Project Code?
