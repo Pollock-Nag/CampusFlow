@@ -31,8 +31,18 @@ export const hrApi = apiSlice.injectEndpoints({
         body,
       }),
     }),
+    buildPrediction: builder.mutation({
+      query: (body) => ({
+        url: `hr/getMLmatch`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { usePostStackWiseFilterMutation, useTalentRequestMutation } =
-  hrApi;
+export const {
+  usePostStackWiseFilterMutation,
+  useTalentRequestMutation,
+  useBuildPredictionMutation,
+} = hrApi;
