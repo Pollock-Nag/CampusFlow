@@ -13,6 +13,7 @@ import { useGetStudentByIdQuery } from '../features/student/studentApi';
 import { useSelector } from 'react-redux';
 import Lottie from 'lottie-react';
 import fourzerofour from '../assets/fourzerofour.json';
+import LanguageStats from '../components/alumniComponents/LanguageStats';
 
 const AlumniProfile = () => {
   const [activeTab1, setActiveTab1] = useState('tab-active');
@@ -102,8 +103,6 @@ const AlumniProfile = () => {
               />
               <Experience alumniInfo={alumniInfo} />
 
-              {/* <LanguageStats /> */}
-
               <div className="p-2 bg-white rounded-2xl min-h-[31vh] shadow-sm ">
                 <div className="tabs">
                   <button
@@ -135,6 +134,11 @@ const AlumniProfile = () => {
                   <SkillsTabs type={'testing'} skills={testing} />
                 ) : null}
               </div>
+              {/* <div className="bg-rose-500">
+                
+                HELLO below is your language stats
+                <LanguageStats />
+              </div> */}
             </div>
             <div className="flex-[0.7] flex flex-col gap-5">
               <div className="Charts">

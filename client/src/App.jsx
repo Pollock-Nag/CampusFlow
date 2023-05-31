@@ -44,6 +44,7 @@ import PrivateRoute from './components/common/PrivateRoute';
 import PublicRoute from './components/common/PublicRoute';
 import GlobeComponent from './components/HR/GlobeComponent';
 import HRLanding from './pages/HR/HRLanding.page';
+import LanguageStats from './components/alumniComponents/LanguageStats';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
@@ -110,6 +111,7 @@ function App() {
             <Route path="education" element={<AlumniEducation />} />
             <Route path="experience" element={<AlumniExperience />} />
             <Route path="changestack" element={<ChangeStack />} />
+            <Route path="stats" element={<LanguageStats />} />
           </Route>
           <Route path="hr">
             <Route path="login" element={<HRloginPage />} />
