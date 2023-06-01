@@ -67,10 +67,6 @@ function TalentCard({ result, studentId, quickView }) {
     );
   }, [studentInfo]);
 
-  // useEffect(() => {
-
-  // }, [data]);
-
   const alumniInfo = result?.alumniDetails;
   const navigate = useNavigate();
   const latestExperience =

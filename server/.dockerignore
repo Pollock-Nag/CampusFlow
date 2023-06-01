@@ -1,13 +1,11 @@
 # npm
 node_modules
-package-lock.json
 *.log
 *.gz
 .env
 # Coveralls
 .nyc_output
 coverage
-fly.toml
 *.toml
 # Benchmarking
 benchmarks/graphs

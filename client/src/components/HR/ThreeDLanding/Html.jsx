@@ -96,7 +96,7 @@ function Html({ handleOpen }) {
           color: 'white',
         }}
       >
-        Proudly Developed By{' '}
+        Proudly Developed at Project Code By{' '}
       </div>
       <div
         style={{

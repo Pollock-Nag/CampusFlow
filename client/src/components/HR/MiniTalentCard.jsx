@@ -17,7 +17,6 @@ function MiniTalentCard({ student }) {
   const handleViewProfile = () => {
     navigate(`/hr/talent/${student?.studentId}`);
   };
-  console.log(student);
   return (
     <div className=" border shadow-md border-purple-200 border-b-4 rounded-lg py-2 min-w-[275px]">
       <Modal open={isOpen} onClose={handleClose} sx={{}}>
