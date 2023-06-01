@@ -623,9 +623,22 @@ const getStudentWeekInfoByType = async (req, res) => {
   }
 };
 
-// const insertPersonalityRating = async (req, res) => {
-//   const { id } = req.params;
-//   const { personalityRating } = req.body;     // [ { 1: { 1: 1, 2: 2, 3: 3, 4: 4 } }, { 2: { 1: 1, 2: 2, 3: 3, 4: 4 } } ]
+const insertPersonality = async (req, res) => {
+  const { id } = req.params;
+  const { personality } = req.body;
+  try {
+    const student = await Student.findById(id);
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    student.personalityType = personality;
+    await student.save();
+    res.status(200).json({ message: 'personalityType inserted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 module.exports = {
   getAllStudents,
@@ -647,4 +660,5 @@ module.exports = {
   getAssessmentMarksByStudentID,
   getMidEndDataByStudentID,
   getStudentType,
+  insertPersonality,
 };

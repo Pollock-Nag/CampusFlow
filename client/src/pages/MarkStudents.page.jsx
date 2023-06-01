@@ -22,6 +22,8 @@ import { useEffect, useState } from 'react';
 import MarkStudent from '../components/MarkStudents/MarkStudent';
 import StepMarking from '../components/MarkStudents/StepMarking';
 import MultiStepForm from '../components/MarkStudents/DaisyStep';
+import Lottie from 'lottie-react';
+import markLottie from '../assets/marking.json';
 
 function MarkStudents() {
   const [cohort, setCohort] = useState('');
@@ -36,6 +38,7 @@ function MarkStudents() {
       setStudents(cohortStudents.students);
     }
   }, [isStudentFetchSuccess]);
+
   const handleChange = (event) => {
     setCohort(event.target.value);
   };
@@ -110,12 +113,26 @@ function MarkStudents() {
             </FormControl>
           </Box>
           <Divider variant="middle" />
-          {isStudentFetchSuccess && (
+          {isStudentFetchSuccess ? (
             <MultiStepForm
               week={week}
               students={students}
               isStudentFetchSuccess={isStudentFetchSuccess}
             />
+          ) : (
+            <div className="flex justify-center">
+              <div className="flex flex-col items-center gap-2">
+                <Lottie
+                  animationData={markLottie}
+                  style={{
+                    width: '400px',
+                  }}
+                />
+                <div className="text-center text-gray-500 text-2xl font-bold uppercase">
+                  Select Cohort to Mark Students
+                </div>
+              </div>
+            </div>
           )}
         </Box>
       </Layout>

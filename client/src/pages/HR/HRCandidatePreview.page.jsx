@@ -7,6 +7,7 @@ import GithubGraph from '../../components/alumniComponents/GithubGraph';
 import SiteChip from '../../components/alumniComponents/SiteChip';
 import SkillsRadarChart from '../../components/StudentInfo/SkillsRadarChart';
 import SkillsTabs from '../SkillsTabs';
+import LanguageStats from '../../components/alumniComponents/LanguageStats';
 import { useGetAlumniByIdQuery } from '../../features/alumni/alumniApi';
 import { useGetStudentByIdQuery } from '../../features/student/studentApi';
 import { useParams } from 'react-router-dom';
@@ -82,6 +83,7 @@ function HRCandidatePreview() {
     );
   }, [filteredTechSkills]);
   return (
+<<<<<<< HEAD
     <>
       <HRLayout>
         <Toaster />
@@ -117,6 +119,71 @@ function HRCandidatePreview() {
                 >
                   Testing
                 </button>
+=======
+    <HRLayout>
+      <Toaster />
+      <div className="flex gap-4 m-4 ">
+        <div className="flex-[0.3] flex flex-col gap-3">
+          <AlumniInfoCard
+            studentId={studentInfo?._id}
+            alumniInfo={alumniInfo}
+            githubUsername={studentInfo?.githubUsername}
+            cohort={studentInfo?.cohortName}
+          />
+          <Experience alumniInfo={alumniInfo} />
+
+          <div className="p-2 bg-white rounded-2xl min-h-[20vh] shadow-md ">
+            <div className="tabs">
+              <button
+                className={`tab tab-lifted tab-lg ${activeTab1} text-lg `}
+                onClick={() => activate(1)}
+              >
+                Frontend
+              </button>
+              <button
+                className={`tab tab-lifted tab-lg ${activeTab2} text-lg`}
+                onClick={() => activate(2)}
+              >
+                Backend
+              </button>
+              <button
+                className={`tab tab-lifted tab-lg ${activeTab3} text-lg`}
+                onClick={() => activate(3)}
+              >
+                Testing
+              </button>
+            </div>
+            {activeTab1 === 'tab-active' ? (
+              <SkillsTabs type={'frontend'} skills={frontend} />
+            ) : null}
+            {activeTab2 === 'tab-active' ? (
+              <SkillsTabs type={'backend'} skills={backend} />
+            ) : null}
+            {activeTab3 === 'tab-active' ? (
+              <SkillsTabs type={'testing'} skills={testing} />
+            ) : null}
+          </div>
+          {/* <LanguageStats /> */}
+          <div className="">
+            <LanguageStats githubUsername={studentInfo?.githubUsername} />
+          </div>
+        </div>
+
+        <div className="flex-[0.7] flex flex-col gap-3">
+          <div className="Charts">
+            <div className="flex justify-between">
+              <div className="flex-[0.5] bg-white rounded-3xl h-64 w-64 p-5 mr-4 shadow-md pb-10">
+                <span className="text-white bg-purple-500 p-3 rounded-full">
+                  Soft Skills
+                </span>
+                <SkillsRadarChart skills={chartData?.softSkills} />
+              </div>
+              <div className="flex-[0.5] h-64 w-64 bg-white rounded-3xl p-5 shadow-md pb-10">
+                <span className="text-white bg-purple-500 p-3 rounded-full">
+                  Tech Skills
+                </span>
+                <SkillsRadarChart skills={chartData?.techSkills} />
+>>>>>>> saimon
               </div>
               {activeTab1 === 'tab-active' ? (
                 <SkillsTabs type={'frontend'} skills={frontend} />

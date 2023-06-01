@@ -42,7 +42,6 @@ import HRSearchResults from './pages/HR/HRSearchResults.page';
 import HRCandidatePreview from './pages/HR/HRCandidatePreview.page';
 import PrivateRoute from './components/common/PrivateRoute';
 import PublicRoute from './components/common/PublicRoute';
-import GlobeComponent from './components/HR/GlobeComponent';
 import HRLanding from './pages/HR/HRLanding.page';
 import LanguageStats from './components/alumniComponents/LanguageStats';
 import HRPrivateRoute from './components/HR/HRPrivateRoute';

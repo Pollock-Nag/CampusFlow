@@ -36,7 +36,7 @@ const ratingParameters = [
 ];
 
 function PeerRatings() {
-  const [cohort, setCohort] = useState('student-nov-2022');
+  const [cohort, setCohort] = useState('');
   const [students, setStudents] = useState([]);
   const [student, setStudent] = useState('');
   const [rate, setRate] = useState({});
@@ -50,6 +50,7 @@ function PeerRatings() {
   const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     setId(user?._id);
+    setCohort(user?.cohort);
   }, [user]);
   useEffect(() => {
     if (isStudentFetchSuccess) {

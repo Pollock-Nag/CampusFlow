@@ -18,7 +18,7 @@ function ProjectcodeSkillTable({ type, skills }) {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{skill?.skill?.skillName}</td>
-                <td>{skill?.marks}</td>
+                <td className="font-semibold">{skill?.marks?.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
