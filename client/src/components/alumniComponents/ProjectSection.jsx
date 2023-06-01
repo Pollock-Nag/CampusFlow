@@ -26,7 +26,6 @@ const ProjectSection = ({ projects }) => {
   const personalProject = projects?.filter(
     (project) => project?.type.toLowerCase() === 'personal'
   );
-  console.log(thesisProject);
   const viewAllClickEvent = () => {
     alert('View all clicked');
   };

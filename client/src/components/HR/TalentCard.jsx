@@ -80,7 +80,7 @@ function TalentCard({ result, studentId }) {
     alumniInfo?.education[alumniInfo?.education?.length - 1];
 
   const gotoProfile = () => {
-    navigate(`/hr/candidate/${studentId}`);
+    navigate(`/hr/talent/${studentId}`);
   };
   return (
     <>
@@ -93,12 +93,11 @@ function TalentCard({ result, studentId }) {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 1000,
-            // bgcolor: 'purple.100',
             p: 4,
           }}
         >
           <Divider sx={{ mb: 4 }}>
-            <Typography variant="h5">Hire Team</Typography>
+            <Typography variant="h5">Build Talent Team & Hire</Typography>
           </Divider>
           <BuildTeam teams={[result, ...bestMatched]} />
         </div>

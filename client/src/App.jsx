@@ -45,6 +45,8 @@ import PublicRoute from './components/common/PublicRoute';
 import GlobeComponent from './components/HR/GlobeComponent';
 import HRLanding from './pages/HR/HRLanding.page';
 import LanguageStats from './components/alumniComponents/LanguageStats';
+import HRPrivateRoute from './components/HR/HRPrivateRoute';
+import HRGoogleLogin from './components/HR/HRGoogleLogin';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
@@ -100,8 +102,22 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="projectcode/" element={<AlumniProjectcode />} />
-            <Route path="portfolio" element={<Portfolio />} />
+            <Route
+              path="projectcode/"
+              element={
+                <PrivateRoute>
+                  <AlumniProjectcode />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="portfolio"
+              element={
+                <PrivateRoute>
+                  <Portfolio />
+                </PrivateRoute>
+              }
+            />
 
             <Route path="profile/portfolio" element={<AlumniPortfolio />} />
             <Route path="education" element={<AlumniEducation />} />
@@ -114,10 +130,31 @@ function App() {
             <Route path="stats" element={<LanguageStats />} />
           </Route>
           <Route path="hr">
-            <Route path="login" element={<HRloginPage />} />
-            <Route path="query" element={<HRQuesetions />} />
-            <Route path="query-results" element={<HRSearchResults />} />
-            <Route path="candidate/:id" element={<HRCandidatePreview />} />
+            <Route path="login" element={<HRGoogleLogin />} />
+            <Route
+              path="query"
+              element={
+                <HRPrivateRoute>
+                  <HRQuesetions />
+                </HRPrivateRoute>
+              }
+            />
+            <Route
+              path="query-results"
+              element={
+                <HRPrivateRoute>
+                  <HRSearchResults />
+                </HRPrivateRoute>
+              }
+            />
+            <Route
+              path="talent/:id"
+              element={
+                <HRPrivateRoute>
+                  <HRCandidatePreview />
+                </HRPrivateRoute>
+              }
+            />
             <Route path="welcome" element={<HRLanding />} />
           </Route>
           <Route

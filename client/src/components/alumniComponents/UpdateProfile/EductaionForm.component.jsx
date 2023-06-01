@@ -59,21 +59,7 @@ const EducationForm = () => {
     };
 
     addInfo(educationData);
-
-    console.log(educationData);
-
-    // TODO: Perform form submission logic here
-
-    // Reset form fields after submission
-    // setInstituteName('');
-    // setProgram('');
-    // setFromDate('');
-    // setToDate('');
-    // setDescription('');
-    // setStatus(true);
-    // setGpa('');
   };
-  console.log('I am from education form');
 
   return (
     <div>

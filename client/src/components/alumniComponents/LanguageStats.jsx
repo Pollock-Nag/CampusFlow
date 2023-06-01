@@ -2,7 +2,6 @@ import React from 'react';
 
 const LanguageStats = ({ githubUsername }) => {
   // const userName = 'Pollock-Nag';
-  console.log('githubUsername', githubUsername);
   return (
     <div className="">
       <a href={`https://github.com/${githubUsername}`}>

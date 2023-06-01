@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 function MiniTalentCard({ student }) {
   const navigate = useNavigate();
   const handleViewProfile = () => {
-    navigate(`/hr/candidate/${student?.studentId}`);
+    navigate(`/hr/talent/${student?.studentId}`);
   };
   return (
-    <div className=" border shadow-xl border-purple-200 border-b-4 rounded-lg py-2 min-w-[275px]">
+    <div className=" border shadow-md border-purple-200 border-b-4 rounded-lg py-2 min-w-[275px]">
       <div className="  h-14 flex bg-white p-2 px-5  gap-4">
         <div className="avatar">
           <div className="w-10 rounded-full">

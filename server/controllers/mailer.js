@@ -24,8 +24,7 @@ module.exports = talentRequest = async (req, res) => {
   });
 
   const {
-    talentId,
-    talentName,
+    team,
     hrName,
     hrEmail,
     hireType,
@@ -38,13 +37,35 @@ module.exports = talentRequest = async (req, res) => {
     industries,
   } = req.body;
 
+  let talent = '';
+  let teamType = '';
+  if (team.length > 1) {
+    teamType = 'Team';
+  } else {
+    teamType = 'Talent';
+  }
+
+  team.forEach((element) => {
+    talent +=
+      'Talent Name: <strong>' +
+      element.talentName +
+      '</strong><br>' +
+      'Profile Link: ' +
+      ENV.SITE_URL +
+      'hr/talent/' +
+      element.talentId +
+      '<br>';
+  });
+
   const response = {
     body: {
       name: 'Project Code',
       intro: 'Request for Talent Acquisition',
       action: {
         instructions:
-          'This HR has requested for your talent. Please contact them at the email below.' +
+          'This HR has requested for a ' +
+          teamType +
+          '. Please contact them at the email below.' +
           '<br><br>' +
           'HR Name: ' +
           hrName +
@@ -58,14 +79,11 @@ module.exports = talentRequest = async (req, res) => {
           'Company Name: ' +
           companyName +
           '<br><br>' +
-          'Selected Talent: ' +
-          talentName +
-          '<br>' +
-          'Profile Link: ' +
-          'https://talent.projectcode.me/talent/' +
-          talentId +
-          '<br><br>' +
-          'Hire Type: ' +
+          'Selected ' +
+          teamType +
+          ': <br>' +
+          talent +
+          '<br>Hire Type: ' +
           hireType +
           '<br>' +
           'When Needed: ' +
@@ -95,7 +113,7 @@ module.exports = talentRequest = async (req, res) => {
 
   const hrEmailBody = mailGenerator.generate({
     body: {
-      name: 'Hello, ' + hrName,
+      name: hrName,
       intro: 'Request Received Successfully',
       outro:
         'We have successfully received your request for talent acquisition. Our team will review the details and contact you soon with further information. Thank you for choosing Project Code Talent.',
@@ -106,7 +124,7 @@ module.exports = talentRequest = async (req, res) => {
 
   const messageToProjectCode = {
     from: ENV.EMAIL,
-    to: 'hello@projectcode.me',
+    to: 'zahidtwt@gmail.com',
     subject: 'Request for Talent Acquisition',
     html: emailBody,
   };

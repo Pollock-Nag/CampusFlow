@@ -5,7 +5,15 @@ import SearchLoader from '../../components/HR/SearchLoader';
 import TalentCard from '../../components/HR/TalentCard';
 
 function HRSearchResults() {
-  const { results } = useSelector((state) => state.results);
+  const [results, setResults] = useState([]);
+  const { results: resultQuery } = useSelector((state) => state.results);
+  useEffect(() => {
+    if (!resultQuery) {
+      setResults(JSON.parse(localStorage.getItem('results')));
+    } else {
+      setResults(resultQuery);
+    }
+  }, [resultQuery]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

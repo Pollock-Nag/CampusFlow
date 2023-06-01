@@ -47,7 +47,7 @@ export default function Landing() {
               margin: 'auto',
             }}
           />
-          <GoogleAuth />
+          <GoogleAuth redirectLink={'/hr/query'} />
         </Box>
       </Modal>
       <Canvas>
