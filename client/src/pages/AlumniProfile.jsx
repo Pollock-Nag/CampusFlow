@@ -44,7 +44,6 @@ const AlumniProfile = () => {
       techStack.push(tech);
     });
   });
-  // ***********************************************
 
   const activate = (tab) => {
     if (tab === 1) {

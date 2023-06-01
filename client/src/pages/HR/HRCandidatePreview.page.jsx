@@ -8,6 +8,7 @@ import GithubGraph from '../../components/alumniComponents/GithubGraph';
 import SiteChip from '../../components/alumniComponents/SiteChip';
 import SkillsRadarChart from '../../components/StudentInfo/SkillsRadarChart';
 import SkillsTabs from '../SkillsTabs';
+import LanguageStats from '../../components/alumniComponents/LanguageStats';
 import { useGetAlumniByIdQuery } from '../../features/alumni/alumniApi';
 import { useGetStudentByIdQuery } from '../../features/student/studentApi';
 import { useParams } from 'react-router-dom';
@@ -86,7 +87,7 @@ function HRCandidatePreview() {
     <HRLayout>
       <Toaster />
       <div className="flex gap-4 m-4 ">
-        <div className="flex-[0.3] flex flex-col gap-5">
+        <div className="flex-[0.3] flex flex-col gap-3">
           <AlumniInfoCard
             studentId={studentInfo?._id}
             alumniInfo={alumniInfo}
@@ -95,9 +96,7 @@ function HRCandidatePreview() {
           />
           <Experience alumniInfo={alumniInfo} />
 
-          {/* <LanguageStats /> */}
-
-          <div className="p-2 bg-white rounded-2xl min-h-[39vh] shadow-md ">
+          <div className="p-2 bg-white rounded-2xl min-h-[20vh] shadow-md ">
             <div className="tabs">
               <button
                 className={`tab tab-lifted tab-lg ${activeTab1} text-lg `}
@@ -128,8 +127,13 @@ function HRCandidatePreview() {
               <SkillsTabs type={'testing'} skills={testing} />
             ) : null}
           </div>
+          {/* <LanguageStats /> */}
+          <div className="">
+            <LanguageStats githubUsername={studentInfo?.githubUsername} />
+          </div>
         </div>
-        <div className="flex-[0.7] flex flex-col gap-5">
+
+        <div className="flex-[0.7] flex flex-col gap-3">
           <div className="Charts">
             <div className="flex justify-between">
               <div className="flex-[0.5] bg-white rounded-3xl h-64 w-64 p-5 mr-4 shadow-md pb-10">
