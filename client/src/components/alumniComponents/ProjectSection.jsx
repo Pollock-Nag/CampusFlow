@@ -10,10 +10,8 @@ const ProjectSection = ({ projects }) => {
   const onClose = () => setOpen(false);
 
   const handleCardClick = () => {
-    // alert('clicked');
     setOpen(true);
   };
-  // console.log(projects);
   const thesisProject = projects?.filter(
     (project) => project?.type.toLowerCase() === 'thesis'
   );
@@ -26,15 +24,9 @@ const ProjectSection = ({ projects }) => {
   const personalProject = projects?.filter(
     (project) => project?.type.toLowerCase() === 'personal'
   );
-  const viewAllClickEvent = () => {
-    alert('View all clicked');
-  };
-
   const handleThesisProject = () => {
     setOpen(true);
     setProjectType('thesis');
-    // <AlumniPortfolioModalView project={thesisProject} />;
-    // alert('thesis project clicked');
   };
   const handleSoloProject = () => {
     setOpen(true);
@@ -78,11 +70,13 @@ const ProjectSection = ({ projects }) => {
       <div className="flex gap-2">
         <div className="flex gap-2">
           <div onClick={handleThesisProject}>
-            <ProjectCardSmall
-              project={thesisProject}
-              customWidth="[26rem]"
-              customHeight="[14.5rem]"
-            />
+            {
+              <ProjectCardSmall
+                project={thesisProject}
+                customWidth="[26rem]"
+                customHeight="[14.5rem]"
+              />
+            }
           </div>
           <div onClick={handleSoloProject}>
             <ProjectCardSmall

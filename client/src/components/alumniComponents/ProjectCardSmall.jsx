@@ -1,8 +1,6 @@
 import React from 'react';
 import projectImg from '../../assets/project.avif';
 const ProjectCardSmall = ({ project, customWidth, customHeight }) => {
-  console.log('project', project);
-
   let youtubeUri;
   if (project?.length > 0) youtubeUri = project[0]?.youtubeLink?.split('=')[1];
 

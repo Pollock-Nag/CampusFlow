@@ -2,11 +2,25 @@ import React, { useEffect, useState } from 'react';
 import Chip from '../alumniComponents/Chip';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import noProject from '../../assets/noproject.json';
+import Lottie from 'lottie-react';
 
 function AlumniPortfolioModalView({ project }) {
-  // console.log('project apps', project);
-  const userName = project?.githubLink.split('/')[3];
-  const projectName = project?.githubLink.split('/')[4];
+  if (!project)
+    return (
+      <div className="card lg:card-side bg-base-100 shadow-xl w-[70vw]  px-10 pt-5 ">
+        <div className="card-body">
+          <div className="flex flex-col justify-center m-auto items-center uppercase">
+            <Lottie animationData={noProject} style={{ width: '350px' }} />
+            <div className="text-4xl text-gray-600 font-semibold text-center">
+              {'No Project Found'}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  const userName = project?.githubLink?.split('/')[3];
+  const projectName = project?.githubLink?.split('/')[4];
 
   const [youtubevdo, setyoutubevdo] = useState('');
   const [collaborators, setCollaborators] = useState([]);
@@ -52,6 +66,7 @@ function AlumniPortfolioModalView({ project }) {
   return (
     <div className="">
       <div className="card lg:card-side bg-base-100 shadow-xl w-[70vw]  px-10 pt-5 ">
+        (
         <div className="card-body">
           <div className="flex gap-8">
             <div>{youtubevdo}</div>
@@ -160,6 +175,7 @@ function AlumniPortfolioModalView({ project }) {
           </div> */}
           <div className="card-actions justify-end"></div>
         </div>
+        )
       </div>
     </div>
   );
