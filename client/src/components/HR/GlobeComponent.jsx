@@ -58,7 +58,6 @@ function GlobeComponent() {
     },
   ];
 
-  console.log(gData);
   return (
     // <div className="bg-purple-900 h-screen w-">
     <Globe
