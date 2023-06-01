@@ -5,7 +5,7 @@ const btoa = require('btoa');
 const gh_client_id = process.env.GITHUB_CLIENT_ID;
 const gh_client_secret = process.env.GITHUB_CLIENT_SECRET;
 const gh_personal_token = process.env.GITHUB_PERSONAL_TOKEN;
-const orgName = 'student-tool';
+const orgName = process.env.GITHUB_ORG_NAME;
 const User = require('../models/user/user.model');
 const Student = require('../models/student/student.model');
 
@@ -103,7 +103,6 @@ const getGithubUser = async (req, res) => {
 };
 
 const getAllOrganizationMembers = async (req, res) => {
-  // const orgName = 'student-tool';
   const githubAccessToken = req.headers['github-access-token'];
 
   const url = `https://api.github.com/orgs/${orgName}/members`;
@@ -125,7 +124,6 @@ const getAllOrganizationMembers = async (req, res) => {
 const getAllCohorts = async (req, res) => {
   const githubAccessToken = req.headers['github-access-token'];
   const getAllCohorts = async (req, res) => {
-    const orgName = 'student-tool';
     const githubAccessToken = req.headers['github-access-token'];
     // console.log(githubAccessToken);
     const url = `https://api.github.com/orgs/${orgName}/teams`;
@@ -184,7 +182,7 @@ const deleteStudentFromCohort = async (req, res) => {
   const cohortName = req.body.cohortName;
   const githubAccessToken = req.headers['github-access-token'];
   const username = req.body.username;
-  const url = `https://api.github.com/orgs/student-tool/teams/${cohortName}/memberships/${username}`;
+  const url = `https://api.github.com/orgs/${orgName}/teams/${cohortName}/memberships/${username}`;
   try {
     const response = await axios.delete(url, {
       headers: {

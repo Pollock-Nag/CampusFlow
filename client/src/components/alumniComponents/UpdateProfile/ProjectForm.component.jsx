@@ -111,7 +111,6 @@ const ProjectForm = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit');
     const data = {
       id: alumniId,
       projectName,

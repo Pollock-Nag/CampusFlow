@@ -14,13 +14,38 @@ import Cookies from 'js-cookie';
 import { useTalentRequestMutation } from '../../features/ hr/hrApi';
 import toast, { Toaster } from 'react-hot-toast';
 
-const HireRequestForm = ({ talentName, talentId }) => {
+const HireRequestForm = ({ talentName, talentId, talents }) => {
   const [hireType, setHireType] = useState('');
   const [whenNeeded, setWhenNeeded] = useState('');
   const [contactNo, setContactNo] = useState('');
   const [companyName, setCompanyName] = useState('');
+  const [team, setTeam] = useState([]);
 
   const [talentRequest, { isSuccess, error }] = useTalentRequestMutation();
+
+  useEffect(() => {
+    if (talents?.length > 0) {
+      const team = talents.map((talent) => {
+        return {
+          talentId: talent.studentId,
+          talentName: talent.alumniDetails.name,
+        };
+      });
+      setTeam(team);
+    }
+  }, [talents]);
+
+  useEffect(() => {
+    if (talentId) {
+      const team = [
+        {
+          talentId,
+          talentName,
+        },
+      ];
+      setTeam(team);
+    }
+  }, [talentId]);
 
   const handleHireTypeChange = (event) => {
     setHireType(event.target.value);
@@ -50,8 +75,7 @@ const HireRequestForm = ({ talentName, talentId }) => {
     const backendSkills = hrQuery?.backendSkill?.join(', ');
     const industries = hrQuery?.industries?.join(', ');
     const hireRequest = {
-      talentId,
-      talentName,
+      team,
       hrName,
       hrEmail,
       hireType,
@@ -94,21 +118,21 @@ const HireRequestForm = ({ talentName, talentId }) => {
           onChange={handleHireTypeChange}
         >
           <FormControlLabel
-            value="full-time"
+            value="Full Time"
             control={<Radio />}
             label="Full Time"
             style={{ display: 'block' }}
           />
 
           <FormControlLabel
-            value="part-time"
+            value="Part Time"
             control={<Radio />}
             label="Part Time"
             style={{ display: 'block' }}
           />
 
           <FormControlLabel
-            value="project-based"
+            value="Project Based"
             control={<Radio />}
             label="Project Based"
             style={{ display: 'block' }}

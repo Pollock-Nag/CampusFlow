@@ -38,7 +38,6 @@ const AlumniSidebar = () => {
   };
   const handleCertification = () => {
     alert('coming soon');
-    console.log('Certification');
   };
   const handleExperience = () => {
     navigate('/alumni/experience');

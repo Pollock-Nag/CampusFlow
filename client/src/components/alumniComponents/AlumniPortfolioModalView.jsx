@@ -7,8 +7,6 @@ function AlumniPortfolioModalView({ project }) {
   // console.log('project apps', project);
   const userName = project?.githubLink.split('/')[3];
   const projectName = project?.githubLink.split('/')[4];
-  console.log(userName, projectName);
-  console.log(project.industry);
 
   const [youtubevdo, setyoutubevdo] = useState('');
   const [collaborators, setCollaborators] = useState([]);
@@ -17,7 +15,6 @@ function AlumniPortfolioModalView({ project }) {
   }, []);
 
   const { accessToken } = useSelector((state) => state?.auth) || {};
-  console.log('accessToken', accessToken);
   useEffect(() => {
     const headers = {
       // 'github-access-token': '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',
@@ -29,7 +26,6 @@ function AlumniPortfolioModalView({ project }) {
         headers
       )
       .then((res) => {
-        console.log('collabolarators', res.data);
         setCollaborators(res.data);
       })
       .catch((err) => {

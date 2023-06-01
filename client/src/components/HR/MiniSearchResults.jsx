@@ -18,7 +18,7 @@ function MiniSearchResults() {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/hr/candidate/${id}`);
+    navigate(`/hr/talent/${id}`);
   };
   const currentUrl = window.location.href;
   useEffect(() => {

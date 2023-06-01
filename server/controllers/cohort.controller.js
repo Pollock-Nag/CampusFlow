@@ -1,5 +1,6 @@
 const Cohort = require('../models/cohort/cohort.model');
 const Student = require('../models/student/student.model');
+const orgName = process.env.GITHUB_ORG_NAME;
 
 const CreateCohort = async (req, res) => {
   try {
@@ -8,7 +9,7 @@ const CreateCohort = async (req, res) => {
       cohortName,
       jrStartDate,
       status: 'jrActive',
-      github: `https://github.com/orgs/student-tool/teams/${cohortName}`,
+      github: `https://github.com/orgs/${orgName}/teams/${cohortName}`,
     });
     await cohort.save();
     res.status(201).json(cohort);

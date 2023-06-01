@@ -4,12 +4,10 @@ import jwt_decode from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { useCreateUserMutation } from '../../features/user/userApi';
 import { useNavigate } from 'react-router-dom';
-function GoogleAuth() {
+function GoogleAuth({ redirectLink }) {
   const navigate = useNavigate();
   const [createUser, { data: createdUser, error, isLoading, isSuccess }] =
     useCreateUserMutation();
-  console.log(createdUser);
-  console.log(error);
   const logInUser = (credentialResponse) => {
     const token = credentialResponse.credential;
     const decode = jwt_decode(token);
@@ -31,7 +29,7 @@ function GoogleAuth() {
       }),
       { expires: 1 } // 1 day
     );
-    navigate('/hr/query');
+    navigate(redirectLink);
   };
 
   return (

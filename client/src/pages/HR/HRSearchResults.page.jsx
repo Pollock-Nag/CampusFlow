@@ -8,13 +8,22 @@ import { IoLogOutOutline } from 'react-icons/io5';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 function HRSearchResults() {
-  const { results } = useSelector((state) => state.results);
+  const [results, setResults] = useState([]);
+  const { results: resultQuery } = useSelector((state) => state.results);
+  useEffect(() => {
+    if (!resultQuery) {
+      setResults(JSON.parse(localStorage.getItem('results')));
+    } else {
+      setResults(resultQuery);
+    }
+  }, [resultQuery]);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
   const logout = () => {
     navigate('/hr/welcome');
     Cookies.remove('hrauth');
+    localStorage.clear();
   };
 
   useEffect(() => {
@@ -59,7 +68,7 @@ function HRSearchResults() {
       {!isLoading && (
         <div>
           {results?.map((result, index) => (
-            <div className="flex justify-center items-center" key={index}>
+            <div className=" items-center w-[60vw] m-auto" key={index}>
               <TalentCard result={result} studentId={result?.studentId} />
             </div>
           ))}

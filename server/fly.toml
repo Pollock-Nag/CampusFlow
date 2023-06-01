@@ -1,0 +1,26 @@
+# fly.toml app configuration file generated for talentgpt on 2023-06-01T20:17:18+06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "talentgpt"
+primary_region = "sin"
+
+[env]
+  EMAIL = "talent.projectcode@gmail.com"
+  GITHUB_CLIENT_ID = "9d1c7643a36826dd9a94"
+  GITHUB_CLIENT_SECRET = "f1d1cbfb33ad53a2e40d39f4dc34220897e97019"
+  GITHUB_ORG_NAME = "student-tool"
+  GITHUB_PERSONAL_TOKEN = "ghp_pPImLSkylXjQIRka849EY8f0qSoIN"
+  ML_URL = "https://campusflow-ml-talent.onrender.com"
+  MONGODB_URI = "mongodb+srv://zahid:zahid@testingdb.ifnogcp.mongodb.net/talentGPT"
+  PASSWORD = "mbreketdvtocpxqn"
+  PORT = "3000"
+  SITE_URL = "https://talentgpt.vercel.app/"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
