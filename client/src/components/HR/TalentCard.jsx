@@ -6,14 +6,58 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import SkillsRadarChart from '../StudentInfo/SkillsRadarChart';
 import { useGetStudentByIdQuery } from '../../features/student/studentApi';
+import { useSelector } from 'react-redux';
+import { useBuildPredictionMutation } from '../../features/ hr/hrApi';
+import MiniTalentCard from './MiniTalentCard';
+import Lottie from 'lottie-react';
+import searching from '../../assets/searching.json';
+import { Button, Divider, Modal, Typography } from '@mui/material';
+import BuildTeam from './BuildTeam';
 
 function TalentCard({ result, studentId }) {
   const [chartData, setChartData] = useState({});
+  const [buildTeam, setBuildTeam] = useState(false);
   const [filteredTechSkills, setFilteredTechSkills] = useState([]);
+  const [bestMatched, setBestMatched] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleHireTeam = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   const { data: studentInfo, isSuccess } = useGetStudentByIdQuery({
     studentId,
   });
+  const { results } = useSelector((state) => state.results);
 
+  const [getPrediction, { data: predictionData, isLoading }] =
+    useBuildPredictionMutation();
+
+  const handleBuildTeam = (e) => {
+    e.stopPropagation();
+
+    setBuildTeam(!buildTeam);
+  };
+  useEffect(() => {
+    if (buildTeam) {
+      if (bestMatched?.length > 0) return;
+      getPrediction({ id: studentId });
+    }
+  }, [buildTeam]);
+
+  useEffect(() => {
+    if (predictionData) {
+      const { result: predictedResult } = predictionData;
+      console.log(predictedResult);
+
+      const bestMatchedStudents = results?.filter((result) => {
+        if (result?.personalityType == predictedResult) return result;
+      });
+      setBestMatched(bestMatchedStudents);
+    }
+  }, [predictionData]);
   useEffect(() => {
     setChartData(studentInfo?.checkpoints[3]);
     setFilteredTechSkills(
@@ -22,6 +66,11 @@ function TalentCard({ result, studentId }) {
       })
     );
   }, [studentInfo]);
+
+  // useEffect(() => {
+
+  // }, [data]);
+
   const alumniInfo = result?.alumniDetails;
   const navigate = useNavigate();
   const latestExperience =
@@ -33,16 +82,31 @@ function TalentCard({ result, studentId }) {
   const gotoProfile = () => {
     navigate(`/hr/candidate/${studentId}`);
   };
-  console.log(filteredTechSkills);
   return (
     <>
-      <div
-        className="my-3 card bg-base-100 border-2 border-purple-200 w-[60vw] hover:border-purple-400 cursor-pointer "
-        onClick={gotoProfile}
-      >
+      <Modal open={isOpen} onClose={handleClose} sx={{}}>
+        <div
+          className="bg-white p-10 rounded-2xl"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 1000,
+            // bgcolor: 'purple.100',
+            p: 4,
+          }}
+        >
+          <Divider sx={{ mb: 4 }}>
+            <Typography variant="h5">Hire Team</Typography>
+          </Divider>
+          <BuildTeam teams={[result, ...bestMatched]} />
+        </div>
+      </Modal>
+      <div className="my-3 card bg-base-100 border-2 border-purple-200 w-[60vw] hover:border-purple-400  ">
         <div className="flex justify-between mx-10">
           <div className="w-96">
-            <div className="card-body p-5">
+            <div className="card-body p-5 cursor-pointer" onClick={gotoProfile}>
               <div className="flex gap-3 items-center">
                 <div className="w-16 rounded-full bg-[#C39AF7]">
                   <img
@@ -134,15 +198,9 @@ function TalentCard({ result, studentId }) {
               </div>
             </div>
           </div>
+
           {/* Button */}
-          <div className="flex z-10 mt-4">
-            <button className="btn bg-purple-500 border-none flex items-center gap-2 hover:bg-purple-800 ">
-              <div className="mt-1">Build Team</div>
-              <div>
-                <AiOutlineTeam size={20} />
-              </div>
-            </button>
-          </div>
+
           {/* Chart */}
           <div className="Charts">
             <div className="flex justify-between">
@@ -152,6 +210,49 @@ function TalentCard({ result, studentId }) {
             </div>
           </div>
         </div>
+        <div className="flex z-10 justify-end mr-5 mb-5">
+          <button
+            className="btn btn-sm bg-purple-500 border-none flex items-center gap-2 hover:bg-purple-800 "
+            onClick={handleBuildTeam}
+          >
+            <div className="mt-1">Build Team</div>
+            <div>
+              <AiOutlineTeam size={20} />
+            </div>
+          </button>
+        </div>
+        {isLoading && (
+          <div className="flex justify-center ">
+            <Lottie animationData={searching} style={{ width: '300px' }} />
+          </div>
+        )}
+        <>
+          {buildTeam && bestMatched.length > 0 && !isLoading ? (
+            <div className="flex flex-col gap-2 mx-10">
+              <div className="text-2xl font-bold text-purple-700">
+                Best Matched Talents
+                <span
+                  onClick={handleHireTeam}
+                  className="btn mb-2 btn-sm ml-5 bg-purple-50 border-2 border-purple-600 text-purple-900 text-xs hover:bg-white  hover:border-purple-300 uppercase gap-2"
+                >
+                  <AiOutlineTeam size={20} /> Hire Team
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {bestMatched?.map((student, index) => {
+                  return <MiniTalentCard student={student} key={index} />;
+                })}
+              </div>
+            </div>
+          ) : (
+            buildTeam &&
+            !isLoading && (
+              <div className="flex justify-center text-2xl font-bold text-purple-700 py-5">
+                {'No Matching Talents Found'}
+              </div>
+            )
+          )}
+        </>
       </div>
     </>
   );

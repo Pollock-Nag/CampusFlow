@@ -12,7 +12,7 @@ export const hrApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-
+          localStorage.setItem('results', JSON.stringify(result.data));
           dispatch(
             queryResult({
               results: result.data,
@@ -23,7 +23,26 @@ export const hrApi = apiSlice.injectEndpoints({
         }
       },
     }),
+
+    talentRequest: builder.mutation({
+      query: (body) => ({
+        url: `hr/talentRequest`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    buildPrediction: builder.mutation({
+      query: (body) => ({
+        url: `hr/getMLmatch`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { usePostStackWiseFilterMutation } = hrApi;
+export const {
+  usePostStackWiseFilterMutation,
+  useTalentRequestMutation,
+  useBuildPredictionMutation,
+} = hrApi;

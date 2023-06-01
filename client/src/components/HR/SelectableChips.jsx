@@ -82,12 +82,10 @@ export default function SelectableChips({
             <Chip
               key={option?._id}
               label={option?.skillName}
-              onClick={() => handleFrontendClick(option?._id)}
-              color={
-                selectedFrontend.includes(option?._id) ? 'primary' : 'default'
-              }
+              onClick={() => handleFrontendClick(option)}
+              color={selectedFrontend.includes(option) ? 'primary' : 'default'}
               variant={
-                selectedFrontend.includes(option?._id) ? 'filled' : 'outlined'
+                selectedFrontend.includes(option) ? 'filled' : 'outlined'
               }
               style={{
                 margin: '10px',
@@ -111,13 +109,9 @@ export default function SelectableChips({
             <Chip
               key={option?._id}
               label={option?.skillName}
-              onClick={() => handleBackendClick(option?._id)}
-              color={
-                selectedBackend.includes(option?._id) ? 'primary' : 'default'
-              }
-              variant={
-                selectedBackend.includes(option?._id) ? 'filled' : 'outlined'
-              }
+              onClick={() => handleBackendClick(option)}
+              color={selectedBackend.includes(option) ? 'primary' : 'default'}
+              variant={selectedBackend.includes(option) ? 'filled' : 'outlined'}
               style={{
                 margin: '10px',
                 padding: '5px',

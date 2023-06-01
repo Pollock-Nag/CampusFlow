@@ -4,7 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import Chip from '../alumniComponents/Chip';
 
 function MiniSearchResults() {
-  const { results } = useSelector((state) => state.results);
+  const [results, setResults] = useState([]);
+  const { results: resultQuery } = useSelector((state) => state.results);
+  useEffect(() => {
+    if (!resultQuery) {
+      setResults(JSON.parse(localStorage.getItem('results')));
+    } else {
+      setResults(resultQuery);
+    }
+  }, [resultQuery]);
+
   const [activeId, setActiveId] = useState('');
   const navigate = useNavigate();
 

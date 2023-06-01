@@ -13,7 +13,7 @@ function HRSearchResults() {
       console.log(results);
       setTimeout(() => {
         setIsLoading(false);
-      }, 3000);
+      }, 10);
     }
   }, [results]);
 

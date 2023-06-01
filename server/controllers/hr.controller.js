@@ -1,6 +1,7 @@
 const Student = require('../models/student/student.model');
 const Alumni = require('../models/alumni/alumni.model');
 const axios = require('axios');
+const env = require('dotenv');
 // const Skill = require('../models/skill/skill.model');
 
 // util functions
@@ -20,7 +21,6 @@ const filterBySkillsId = (
     for (const alumni of filteredAlumniByStacked) {
       let sum = 0;
       alumni.checkpoint.techSkills.forEach((techSkill) => {
-        // console.log(techSkill.skill.toString());
         if (techSkill?.skill?.toString() === skilltypeId) {
           if (tempFilter.includes(alumni)) {
             alumni.sum += techSkill.marks;
@@ -94,6 +94,7 @@ const stackWiseFilter = async (req, res) => {
         studentId: student._id,
         alumniDetails: alumniDetails,
         checkpoint: checkpoints[3],
+        personalityType: student.personalityType,
       });
     }
 
@@ -126,13 +127,15 @@ const stackWiseFilter = async (req, res) => {
 };
 
 const getMLmatch = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.body;
+  console.log(id);
   try {
     const student = await Student.findById(id);
     const { pesonlaityType, personalityRating } = student;
-
+    // 'http://127.0.0.1:5000/predict'
     // axios diya call marbo ml endpoint e
-    const mlResult = await axios.post('http://127.0.0.1:5000/predict', {
+    console.log(process.env.ML_URL);
+    const mlResult = await axios.post(`${process.env.ML_URL}/predict`, {
       features: personalityRating,
     });
     res.status(200).send(mlResult.data);
