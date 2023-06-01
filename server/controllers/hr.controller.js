@@ -20,7 +20,8 @@ const filterBySkillsId = (
     for (const alumni of filteredAlumniByStacked) {
       let sum = 0;
       alumni.checkpoint.techSkills.forEach((techSkill) => {
-        if (techSkill.skill.toString() === skilltypeId) {
+        // console.log(techSkill.skill.toString());
+        if (techSkill?.skill?.toString() === skilltypeId) {
           if (tempFilter.includes(alumni)) {
             alumni.sum += techSkill.marks;
           } else {

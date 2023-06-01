@@ -11,4 +11,9 @@ router.delete('/deleteInfo/:id', alumniController.deleteInfo);
 router.get('/getAlumniById/:id', alumniController.getAlumniById);
 router.post('/addStack/:id', alumniController.addStack);
 
+router.post(
+  '/insertPersonaityRating/:id',
+  alumniController.insertPersonaityRating
+);
+
 module.exports = router;
