@@ -13,7 +13,7 @@ function AlumniPortfolioModalView({ project }) {
           <div className="flex flex-col justify-center m-auto items-center uppercase">
             <Lottie animationData={noProject} style={{ width: '350px' }} />
             <div className="text-4xl text-gray-600 font-semibold text-center">
-              {'No Project Found'}
+              {'Project not Added Yet'}
             </div>
           </div>
         </div>
