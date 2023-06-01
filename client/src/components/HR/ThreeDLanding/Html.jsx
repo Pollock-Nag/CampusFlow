@@ -10,7 +10,19 @@ function Html({ handleOpen }) {
     <>
       {/* <div style={{ fontSize: min('12vw', '86px'), lineHeight: 0.75 }}> */}
       <div className="font-bold" style={{ fontSize: '12vw', lineHeight: 0.9 }}>
-        <TypingEffect />
+        <div
+          style={{
+            position: 'relative',
+            top: '60vh',
+            left: '50vw',
+            transform: 'translateX(-50%)',
+            color: 'white',
+            opacity: 0.8,
+          }}
+          className="text-9xl"
+        >
+          Lost While Hunting?
+        </div>
 
         <div
           style={{
@@ -75,10 +87,10 @@ function Html({ handleOpen }) {
         </div>
       </div>
       <div
-        className="animate-pulse text-4xl"
+        className="animate-pulse text-4xl text-center "
         style={{
-          position: 'absolute',
-          top: '250vh',
+          position: 'relative',
+          top: '240vh',
           left: '50vw',
           transform: 'translateX(-50%)',
           color: 'white',

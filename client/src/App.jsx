@@ -36,7 +36,6 @@ import AlumniEducation from './pages/AlumniEducation';
 import AlumniExperience from './pages/AlumniExperience';
 import ChangeStack from './components/alumniComponents/UpdateProfile/ChangeStack';
 
-import HRloginPage from './pages/HR/HRloginPage';
 import HRQuesetions from './pages/HR/HRQuestions.page';
 import HRSearchResults from './pages/HR/HRSearchResults.page';
 import HRCandidatePreview from './pages/HR/HRCandidatePreview.page';
@@ -46,6 +45,7 @@ import HRLanding from './pages/HR/HRLanding.page';
 import LanguageStats from './components/alumniComponents/LanguageStats';
 import HRPrivateRoute from './components/HR/HRPrivateRoute';
 import HRGoogleLogin from './components/HR/HRGoogleLogin';
+import useZoom from './hooks/useZoom';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();

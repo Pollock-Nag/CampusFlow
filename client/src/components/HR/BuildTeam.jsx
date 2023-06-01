@@ -14,7 +14,6 @@ function BuildTeam({ teams }) {
   const handleRemove = (student) => {
     setTeam(team.filter((s) => s.studentId !== student.studentId));
   };
-  console.log(team);
 
   return (
     <>
@@ -29,7 +28,7 @@ function BuildTeam({ teams }) {
                 <MiniTalentCard student={talent} />
                 {!team?.includes(talent) && (
                   <button
-                    className="btn btn-sm btn-primary bg-green-100 border-none text-green-900 text-xs ml-2 gap-1 disabled:opacity-50"
+                    className="btn btn-sm btn-primary bg-green-100 border-none text-green-900 text-xs ml-2 gap-1 disabled:opacity-50 hover:bg-green-200"
                     onClick={() => handleAdd(talent)}
                     disabled={false}
                   >
@@ -38,7 +37,7 @@ function BuildTeam({ teams }) {
                 )}
                 {team?.includes(talent) && (
                   <button
-                    className="btn btn-sm btn-primary bg-red-100 border-none text-red-900 text-xs ml-2 gap-1"
+                    className="btn btn-sm btn-primary bg-red-100 border-none text-red-900 text-xs ml-2 gap-1 hover:bg-red-200"
                     onClick={() => handleRemove(talent)}
                   >
                     <AiOutlineMinus size={18} color={'red'} />

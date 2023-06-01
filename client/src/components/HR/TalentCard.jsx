@@ -14,7 +14,7 @@ import searching from '../../assets/searching.json';
 import { Button, Divider, Modal, Typography } from '@mui/material';
 import BuildTeam from './BuildTeam';
 
-function TalentCard({ result, studentId }) {
+function TalentCard({ result, studentId, quickView }) {
   const [chartData, setChartData] = useState({});
   const [buildTeam, setBuildTeam] = useState(false);
   const [filteredTechSkills, setFilteredTechSkills] = useState([]);
@@ -45,7 +45,7 @@ function TalentCard({ result, studentId }) {
       if (bestMatched?.length > 0) return;
       getPrediction({ id: studentId });
     }
-  }, [buildTeam]);
+  }, [buildTeam, result]);
 
   useEffect(() => {
     if (predictionData) {
@@ -102,7 +102,7 @@ function TalentCard({ result, studentId }) {
           <BuildTeam teams={[result, ...bestMatched]} />
         </div>
       </Modal>
-      <div className="my-3 card bg-base-100 border-2 border-purple-200 w-[60vw] hover:border-purple-400  ">
+      <div className="my-3 card bg-base-100 border-2 border-purple-200  hover:border-purple-400  ">
         <div className="flex justify-between mx-10">
           <div className="w-96">
             <div className="card-body p-5 cursor-pointer" onClick={gotoProfile}>
@@ -209,17 +209,19 @@ function TalentCard({ result, studentId }) {
             </div>
           </div>
         </div>
-        <div className="flex z-10 justify-end mr-5 mb-5">
-          <button
-            className="btn btn-sm bg-purple-500 border-none flex items-center gap-2 hover:bg-purple-800 "
-            onClick={handleBuildTeam}
-          >
-            <div className="mt-1">Build Team</div>
-            <div>
-              <AiOutlineTeam size={20} />
-            </div>
-          </button>
-        </div>
+        {!quickView && (
+          <div className="flex z-10 justify-end mr-5 mb-5">
+            <button
+              className="btn btn-sm bg-purple-500 border-none flex items-center gap-2 hover:bg-purple-800 "
+              onClick={handleBuildTeam}
+            >
+              <div className="mt-1">Build Team</div>
+              <div>
+                <AiOutlineTeam size={20} />
+              </div>
+            </button>
+          </div>
+        )}
         {isLoading && (
           <div className="flex justify-center ">
             <Lottie animationData={searching} style={{ width: '300px' }} />
@@ -246,8 +248,8 @@ function TalentCard({ result, studentId }) {
           ) : (
             buildTeam &&
             !isLoading && (
-              <div className="flex justify-center text-2xl font-bold text-purple-700 py-5">
-                {'No Matching Talents Found'}
+              <div className="flex justify-center text-2xl font-bold text-gray-500 py-5">
+                {'Currently No Matching Talents Found'}
               </div>
             )
           )}

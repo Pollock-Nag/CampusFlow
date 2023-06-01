@@ -23,6 +23,7 @@ function HRSearchResults() {
   const logout = () => {
     navigate('/hr/welcome');
     Cookies.remove('hrauth');
+    localStorage.clear();
   };
 
   useEffect(() => {
@@ -67,7 +68,7 @@ function HRSearchResults() {
       {!isLoading && (
         <div>
           {results?.map((result, index) => (
-            <div className="flex justify-center items-center" key={index}>
+            <div className=" items-center w-[60vw] m-auto" key={index}>
               <TalentCard result={result} studentId={result?.studentId} />
             </div>
           ))}
