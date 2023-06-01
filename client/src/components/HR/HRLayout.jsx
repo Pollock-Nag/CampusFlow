@@ -1,6 +1,4 @@
-import Cookies from 'js-cookie';
-import React, { useState, useEffect } from 'react';
-import HRGoogleLogin from './HRGoogleLogin';
+import React from 'react';
 import MiniSearchResults from './MiniSearchResults';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
@@ -13,15 +11,6 @@ function HRLayout({ children }) {
     navigate('/hr/welcome');
     Cookies.remove('hrauth');
   };
-  const [isHr, setIsHr] = useState(false);
-  const hrauth = Cookies.get('hrauth');
-
-  useEffect(() => {
-    if (hrauth === 'hr') {
-      setIsHr(true);
-    }
-  }, [hrauth]);
-
   return (
     <>
       <div className="flex">
@@ -44,8 +33,8 @@ function HRLayout({ children }) {
               </Button>
             </div>
           </div>
-          <div className="w-[100vw] ml-[300px]">{children}</div>
         </div>
+        <div className="w-[100vw] ml-[300px]">{children}</div>
       </div>
     </>
   );
