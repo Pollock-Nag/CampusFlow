@@ -49,6 +49,9 @@ function StudentInfo() {
     studentId: id,
   });
 
+  // check role
+  const role = localStorage.getItem('role');
+
   // Dropdown options
   const weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'];
   const checkpoints = ['Mid Junior', 'End Junior', 'Mid Senior', 'End Senior'];
@@ -119,43 +122,47 @@ function StudentInfo() {
           <div className=" flex justify-between">
             <div>
               {/* Type Dropdown*/}
-              <span className=" dropdown dropdown-hover text-right ml-auto mb-3 ">
-                <label
-                  tabIndex={0}
-                  className="w-32 text-center btn m-1 bg-orange-100 border-0 text-orange-950 hover:bg-orange-200 hover:text-orange-900 shadow-sm border-b-4 border-b-orange-600"
-                >
-                  {types[selectedType - 1]}
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu p-2  bg-base-100 rounded-box w-32  text-center  bg-orange-50 shadow-2xl"
-                >
-                  {types.map((type, index) => (
-                    <li key={index} onClick={() => handleType(index)}>
-                      <a className="capitalize">{type}</a>
-                    </li>
-                  ))}
-                </ul>
-              </span>
+              {role === 'instructor' ? (
+                <span className=" dropdown dropdown-hover text-right ml-auto mb-3 ">
+                  <label
+                    tabIndex={0}
+                    className="w-32 text-center btn m-1 bg-orange-100 border-0 text-orange-950 hover:bg-orange-200 hover:text-orange-900 shadow-sm border-b-4 border-b-orange-600"
+                  >
+                    {types[selectedType - 1]}
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2  bg-base-100 rounded-box w-32  text-center  bg-orange-50 shadow-2xl"
+                  >
+                    {types.map((type, index) => (
+                      <li key={index} onClick={() => handleType(index)}>
+                        <a className="capitalize">{type}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </span>
+              ) : null}
               {/* Week dropdown */}
-              <span className=" dropdown dropdown-hover text-right ml-auto mb-3 ">
-                <label
-                  tabIndex={0}
-                  className="w-32 text-center btn m-1 bg-purple-100 border-0 text-purple-950 hover:bg-purple-200 hover:text-purple-900 shadow-sm border-b-4 border-b-purple-500"
-                >
-                  {weeks[selectedWeek - 1]}
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu p-2  bg-base-100 rounded-box w-32  text-center  bg-purple-50 shadow-2xl"
-                >
-                  {weeks.map((week, index) => (
-                    <li key={week} onClick={() => handleSelect(index)}>
-                      <a>{week}</a>
-                    </li>
-                  ))}
-                </ul>
-              </span>
+              {role === 'instructor' ? (
+                <span className=" dropdown dropdown-hover text-right ml-auto mb-3 ">
+                  <label
+                    tabIndex={0}
+                    className="w-32 text-center btn m-1 bg-purple-100 border-0 text-purple-950 hover:bg-purple-200 hover:text-purple-900 shadow-sm border-b-4 border-b-purple-500"
+                  >
+                    {weeks[selectedWeek - 1]}
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2  bg-base-100 rounded-box w-32  text-center  bg-purple-50 shadow-2xl"
+                  >
+                    {weeks.map((week, index) => (
+                      <li key={week} onClick={() => handleSelect(index)}>
+                        <a>{week}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </span>
+              ) : null}
               {/* Checkpoint dropdown */}
               <span className=" dropdown dropdown-hover text-right ml-auto mb-3 ">
                 <label
