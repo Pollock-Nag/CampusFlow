@@ -16,6 +16,7 @@ function AlumniEducation() {
     isLoading,
     error,
   } = useGetAlumniByIdQuery(id); // alumni id
+
   useEffect(() => {
     if (isSuccess) {
       setEducation(alumniInfo?.education);
@@ -25,7 +26,7 @@ function AlumniEducation() {
     }
   }, [isSuccess, error]);
 
-  console.log(alumniInfo?.education);
+  // console.log(alumniInfo?.education);
 
   return (
     <AlumniLayout>

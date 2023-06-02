@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import axios from 'axios';
 function SiteChip({ alumniInfo }) {
   const onlineJudge = alumniInfo?.onlineJudge[0];
   const [totalSolve, setTotalSolve] = useState();
-  axios
-    .get(`https://leetcode-stats-api.herokuapp.com/${onlineJudge?.username}`)
-    .then((res) => {
-      setTotalSolve(res.data.totalSolved);
-    });
 
-  // console.log(onlineJudge);
+  useEffect(() => {
+    axios
+      .get(`https://leetcode-stats-api.herokuapp.com/${onlineJudge?.username}`)
+      .then((res) => {
+        setTotalSolve(res.data.totalSolved);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [onlineJudge]);
+
   return (
     <div>
       <div className="card w-48 h-52 bg-purple-200 shadow-md">

@@ -3,7 +3,7 @@ import { TextField, Button, Box, Typography, Divider } from '@mui/material';
 import { useAddAlumniInfoMutation } from '../../../features/alumni/alumniApi';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-const CertificationForm = ({ handleClose }) => {
+const CertificationForm = () => {
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const [addInfo, { data, isSuccess, error }] = useAddAlumniInfoMutation();
@@ -11,7 +11,6 @@ const CertificationForm = ({ handleClose }) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success('Certification added successfully');
-      handleClose();
     }
     if (error) {
       console.log(error);
@@ -43,11 +42,6 @@ const CertificationForm = ({ handleClose }) => {
     setUrl('');
   };
 
-  // handleclose should be called in useEffect if successful submission
-  // useEffect(() => {
-  //   handleClose();
-  // }, [handleClose]);
-
   return (
     <div>
       <Divider>
@@ -75,24 +69,15 @@ const CertificationForm = ({ handleClose }) => {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: 'center',
           marginTop: '1rem',
         }}
       >
         <Button
-          type="cancel"
-          variant="contained"
-          color="error"
-          onClick={handleClose}
-          sx={{ px: 5 }}
-        >
-          Cancel
-        </Button>
-        <Button
           variant="contained"
           color="primary"
-          sx={{ px: 2 }}
+          sx={{ px: 2, width: '100%' }}
           onClick={handleSubmit}
         >
           Add Certificate
