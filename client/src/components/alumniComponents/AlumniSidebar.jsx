@@ -37,7 +37,7 @@ const AlumniSidebar = () => {
     navigate('/alumni/education');
   };
   const handleCertification = () => {
-    alert('coming soon');
+    navigate('/alumni/certification');
   };
   const handleExperience = () => {
     navigate('/alumni/experience');

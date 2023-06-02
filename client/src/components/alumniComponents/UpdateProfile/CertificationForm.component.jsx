@@ -3,7 +3,7 @@ import { TextField, Button, Box, Typography, Divider } from '@mui/material';
 import { useAddAlumniInfoMutation } from '../../../features/alumni/alumniApi';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-const CertificationForm = ({ handleClose }) => {
+const CertificationForm = () => {
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const [addInfo, { data, isSuccess, error }] = useAddAlumniInfoMutation();
@@ -43,11 +43,6 @@ const CertificationForm = ({ handleClose }) => {
     setUrl('');
   };
 
-  // handleclose should be called in useEffect if successful submission
-  // useEffect(() => {
-  //   handleClose();
-  // }, [handleClose]);
-
   return (
     <div>
       <Divider>
@@ -80,15 +75,6 @@ const CertificationForm = ({ handleClose }) => {
           marginTop: '1rem',
         }}
       >
-        <Button
-          type="cancel"
-          variant="contained"
-          color="error"
-          onClick={handleClose}
-          sx={{ px: 5 }}
-        >
-          Cancel
-        </Button>
         <Button
           variant="contained"
           color="primary"
