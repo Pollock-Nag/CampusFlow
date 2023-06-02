@@ -11,7 +11,6 @@ const CertificationForm = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success('Certification added successfully');
-      handleClose();
     }
     if (error) {
       console.log(error);
@@ -70,7 +69,7 @@ const CertificationForm = () => {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: 'center',
           marginTop: '1rem',
         }}
@@ -78,7 +77,7 @@ const CertificationForm = () => {
         <Button
           variant="contained"
           color="primary"
-          sx={{ px: 2 }}
+          sx={{ px: 2, width: '100%' }}
           onClick={handleSubmit}
         >
           Add Certificate

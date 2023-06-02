@@ -46,6 +46,7 @@ import LanguageStats from './components/alumniComponents/LanguageStats';
 import HRPrivateRoute from './components/HR/HRPrivateRoute';
 import HRGoogleLogin from './components/HR/HRGoogleLogin';
 import useZoom from './hooks/useZoom';
+import AlumniCertification from './pages/AlumniCertification.page';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
@@ -127,6 +128,7 @@ function App() {
             <Route path="experience" element={<AlumniExperience />} />
             <Route path="changestack" element={<ChangeStack />} />
             <Route path="stats" element={<LanguageStats />} />
+            <Route path="certification" element={<AlumniCertification />} />
           </Route>
           <Route path="hr">
             <Route path="login" element={<HRGoogleLogin />} />
