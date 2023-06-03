@@ -115,7 +115,11 @@ function TalentCard({ result, studentId, quickView }) {
                   </div>
                   <div className="text-sm text-gray-700 drop-shadow-lg">
                     <Chip
-                      name={studentInfo?.cohortName?.slice(8)?.toUpperCase()}
+                      name={`${
+                        studentInfo?.cohortName?.split('-')[1]?.toUpperCase() +
+                        '-' +
+                        studentInfo?.cohortName?.split('-')[2]?.toUpperCase()
+                      } Cohort`}
                       padding={2}
                       round={'md'}
                       customColor={'orange-100'}
