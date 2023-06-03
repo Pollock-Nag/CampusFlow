@@ -66,7 +66,6 @@ function AlumniPortfolioModalView({ project }) {
   return (
     <div className="">
       <div className="card lg:card-side bg-base-100 shadow-xl w-[70vw]  px-10 pt-5 ">
-        (
         <div className="card-body">
           <div className="flex gap-8">
             <div>{youtubevdo}</div>
@@ -78,15 +77,8 @@ function AlumniPortfolioModalView({ project }) {
           <h2 className="card-title text-3xl mt-5 text-purple-600">
             {project?.projectName}
           </h2>
-
           <table>
             <tbody>
-              {/* <tr>
-                <td className="text-xl font-light">Description</td>
-                <td className="text-xl font-light text-gray-400 ">
-                  {project?.description}
-                </td>
-              </tr> */}
               <tr>
                 <td className="text-xl font-light py-2">Type</td>
                 <td className="text-xl font-light text-gray-400 ">
@@ -161,21 +153,8 @@ function AlumniPortfolioModalView({ project }) {
               </tr>
             </tbody>
           </table>
-          {/* <div>
-            <div className="text-xl font-light">Description</div>
-            <div className="text-xl font-light text-gray-400 ">
-              {project?.description}
-            </div>
-          </div>
-          <div>
-            <div className="text-xl font-light">Type</div>
-            <div className="text-xl font-light text-gray-400 ">
-              {project?.type}
-            </div>
-          </div> */}
           <div className="card-actions justify-end"></div>
         </div>
-        )
       </div>
     </div>
   );
