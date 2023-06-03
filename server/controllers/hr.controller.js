@@ -7,7 +7,7 @@ const env = require('dotenv');
 // util functions
 const filterByStack = (allAlumniList, stack) => {
   const filteredAlumniList = allAlumniList.filter((alumni) => {
-    if (alumni.alumniDetails.stack === stack) return alumni;
+    if (alumni?.alumniDetails?.stack === stack) return alumni;
   });
   return filteredAlumniList;
 };
@@ -20,7 +20,7 @@ const filterBySkillsId = (
   for (const skilltypeId of skilltypeIds) {
     for (const alumni of filteredAlumniByStacked) {
       let sum = 0;
-      alumni.checkpoint.techSkills.forEach((techSkill) => {
+      alumni?.checkpoint?.techSkills?.forEach((techSkill) => {
         if (techSkill?.skill?.toString() === skilltypeId) {
           if (tempFilter.includes(alumni)) {
             alumni.sum += techSkill.marks;

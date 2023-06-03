@@ -51,10 +51,10 @@ function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
   return !authChecked ? (
-    // <Spinner size={'xl'}></Spinner>
     <div />
   ) : (
     <div>
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />

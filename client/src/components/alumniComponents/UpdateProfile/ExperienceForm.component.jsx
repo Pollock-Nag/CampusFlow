@@ -41,6 +41,13 @@ const ExperienceForm = () => {
 
     setTechSkills(techSkillsTemp);
   }, [skillsSuccess]);
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
   useEffect(() => {
     if (isSuccess) {
       toast.success('Experience added successfully');
@@ -111,18 +118,29 @@ const ExperienceForm = () => {
           required
           fullWidth
           margin="normal"
+          defaultValue={getCurrentDate()}
         />
 
-        <TextField
-          label="To Date"
-          type="date"
-          value={toDate}
-          onChange={(event) => setToDate(event.target.value)}
-          required
-          fullWidth
-          margin="normal"
+        {!status && (
+          <TextField
+            label="To Date"
+            type="date"
+            value={toDate}
+            onChange={(event) => setToDate(event.target.value)}
+            fullWidth
+            margin="normal"
+            defaultValue={getCurrentDate()}
+          />
+        )}
+        <FormControlLabel
+          control={
+            <Switch
+              checked={status}
+              onChange={(event) => setStatus(event.target.checked)}
+            />
+          }
+          label="Currently Working Here"
         />
-
         <TextField
           label="Description"
           value={description}
@@ -160,15 +178,6 @@ const ExperienceForm = () => {
           )}
         />
 
-        <FormControlLabel
-          control={
-            <Switch
-              checked={status}
-              onChange={(event) => setStatus(event.target.checked)}
-            />
-          }
-          label="Currently Working Here"
-        />
         <Box
           sx={{
             display: 'flex',

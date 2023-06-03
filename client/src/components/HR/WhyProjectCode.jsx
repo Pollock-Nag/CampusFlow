@@ -15,8 +15,8 @@ const companies = [
     logo: 'https://images.squarespace-cdn.com/content/v1/62f276db23ed6539a9115860/4e9deffe-f768-443f-a5a7-950d71a7729c/Project-Code-Dhaka-Software-Engineering-Bootcamp-Learn-to-Code-JavaScript-Codeworks-React-Node-Mongo-Express-Vue-Angular-Full-Stack-Engineer-Startup-Jobs-in-Tech-Career-Ready-MERN-MEAN-Remote-6.png?format=300w',
   },
   {
-    name: 'PulseTech',
-    logo: 'https://images.squarespace-cdn.com/content/v1/62f276db23ed6539a9115860/bea57174-3f2f-465b-b8bf-ebd48aa2fc26/Project-Code-Dhaka-Software-Engineering-Bootcamp-Learn-to-Code-JavaScript-Codeworks-React-Node-Mongo-Express-Vue-Angular-Full-Stack-Engineer-Startup-Jobs-in-Tech-Career-Ready-MERN-MEAN-Remote-11.png?format=300w',
+    name: 'Shapla',
+    logo: 'https://images.squarespace-cdn.com/content/v1/62f276db23ed6539a9115860/a67e14d7-3ad0-455f-b8ed-3e2fc259ec25/Project+Code-Shapla.png?format=300w',
   },
   {
     name: 'Jatri',
@@ -54,20 +54,19 @@ const WhyProjectCode = () => {
         <div className="flex flex-row justify-start gap-2">
           <p className="text-sm text-left text-[#444444] flex items-center gap-2">
             <FaCheck className="text-[#444444] text-sm" />
-            Immediate access to new talent markets with Project Code’s Always-on
-            Hiring.
+            Instant access to highly vetted top-tier talents.
           </p>
         </div>
         <div className="flex flex-row justify-start gap-2">
           <p className="text-sm text-left text-[#444444] flex items-center gap-2">
             <FaCheck className="text-[#444444] text-sm" />
-            Build and scale your teams while enabling a multicultural, diverse.
+            Build and scale your teams efficiently.
           </p>
         </div>
         <div className="flex flex-row justify-start gap-2">
           <p className="text-sm text-left text-[#444444] flex items-center gap-2">
             <FaCheck className="text-[#444444] text-sm" />
-            More than just hiring
+            Twelves weeks of consistent vetting.
           </p>
         </div>
       </div>

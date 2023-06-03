@@ -30,7 +30,7 @@ function StudentSidebar({ student }) {
     event.preventDefault();
     const insertData = {
       studentId: id,
-      personalityType: selectedPersonality,
+      personality: selectedPersonality,
     };
     insertPersonality(insertData);
     setSelectedPersonality('');

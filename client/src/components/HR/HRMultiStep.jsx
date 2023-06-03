@@ -127,9 +127,9 @@ NumberedStepIcon.propTypes = {
 };
 
 const steps = [
-  'What role would you like to hire?',
-  'Which skills or expertise do you need?',
-  'Which industries do you need?',
+  'Talent Position?',
+  'Technical skills needed?',
+  'Applied Industries?',
 ];
 
 export default function HRMultiSteps() {
