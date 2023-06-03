@@ -28,10 +28,9 @@ function HRSearchResults() {
 
   useEffect(() => {
     if (results) {
-      console.log(results);
       setTimeout(() => {
         setIsLoading(false);
-      }, 10);
+      }, 3000);
     }
   }, [results]);
 
