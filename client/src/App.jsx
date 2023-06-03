@@ -55,7 +55,6 @@ function App() {
     <div />
   ) : (
     <div>
-      <Toaster />
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
