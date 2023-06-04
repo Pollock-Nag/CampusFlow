@@ -10,8 +10,8 @@ const SmallNameCard = ({ name, githubUsername, status, type, id }) => {
 
   return (
     <div
-      className="bordered shadow-sm px-5 py-3
-     flex bg-white  rounded-2xl mr-5 hover:shadow-lg cursor-pointer"
+      className="bordered shadow-sm px-3 py-2
+     flex bg-white  rounded-2xl mr-3 hover:shadow-lg cursor-pointer"
       onClick={() => handleStudentClick(id)}
     >
       <div className="avatar mr-2">
@@ -23,7 +23,6 @@ const SmallNameCard = ({ name, githubUsername, status, type, id }) => {
       </div>
       <div className="flex flex-col justify-center ">
         <div className="font-semibold text-sm">
-          {/* TODO: fix href */}
           <a>{name}</a>
         </div>
         <div className="text-sm text-gray-500 capitalize">{type}</div>

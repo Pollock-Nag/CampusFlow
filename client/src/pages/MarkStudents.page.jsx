@@ -66,7 +66,7 @@ function MarkStudents() {
           >
             <Box>
               <Typography variant="h6" component="h6">
-                Mark Students
+                Student Evaluations{' '}
               </Typography>
 
               <Typography
@@ -129,7 +129,7 @@ function MarkStudents() {
                   }}
                 />
                 <div className="text-center text-gray-500 text-2xl font-bold uppercase">
-                  Select Cohort to Mark Students
+                  Select Cohort to Evalute Students
                 </div>
               </div>
             </div>

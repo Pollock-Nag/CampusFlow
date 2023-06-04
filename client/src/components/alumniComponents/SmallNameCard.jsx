@@ -11,9 +11,7 @@ const SmallNameCard = ({ name, githubUsername, role }) => {
         </div>
       </div>
       <div className="flex flex-col justify-center ml-1">
-        <div className="font-semibold">
-          <a href="/">{name}</a>
-        </div>
+        <div className="font-semibold text-lg">{name}</div>
         <div className="text-xs text-gray-500 capitalize">{role}</div>
       </div>
     </div>

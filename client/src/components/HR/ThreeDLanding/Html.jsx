@@ -21,7 +21,7 @@ function Html({ handleOpen }) {
           }}
           className="text-9xl"
         >
-          Lost While Hunting?
+          Looking for your <span className="text-purple-400">SQUAD</span>?
         </div>
 
         <div

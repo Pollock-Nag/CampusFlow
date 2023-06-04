@@ -34,7 +34,6 @@ function MultiStepForm({ students, isStudentFetchSuccess, week }) {
   return (
     <div className="flex justify-between">
       <div className="flex-[0.5]">
-        <h1>Multi-Step Form</h1>{' '}
         <ul className=" steps steps-vertical cursor-pointer">
           {students.map((student, index) => (
             <Step

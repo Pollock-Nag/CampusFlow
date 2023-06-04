@@ -53,7 +53,12 @@ function TalentCard({ result, studentId, quickView }) {
       console.log(predictedResult);
 
       const bestMatchedStudents = results?.filter((result) => {
-        if (result?.personalityType == predictedResult) return result;
+        console.log(result?.studentId);
+        if (
+          result?.personalityType == predictedResult &&
+          result?.studentId !== studentId
+        )
+          return result;
       });
       setBestMatched(bestMatchedStudents);
     }
@@ -143,7 +148,7 @@ function TalentCard({ result, studentId, quickView }) {
               {alumniInfo?.experiences?.length > 0 ? (
                 <>
                   <p className=" mt-1 leading-4 text-sm text-gray-700">
-                    I've worked in
+                    I've worked in{' '}
                     <span className="text-md text-gray-800">
                       <span className="font-bold text-purple-700">
                         {latestExperience?.companyName}
@@ -154,15 +159,17 @@ function TalentCard({ result, studentId, quickView }) {
                 </>
               ) : (
                 <>
-                  <p className=" mt-1 leading-4 text-sm text-gray-700">
-                    Academic Information
-                    <span className="text-md text-gray-800">
-                      <span className="font-bold text-purple-700">
-                        {latestEducation?.program}
-                      </span>{' '}
-                      from {latestEducation?.instituteName}
-                    </span>
-                  </p>
+                  {latestEducation?.program && (
+                    <p className=" mt-1 leading-4 text-sm text-gray-700">
+                      Academic Information
+                      <span className="text-md text-gray-800">
+                        <span className="font-bold text-purple-700">
+                          {latestEducation?.program}
+                        </span>{' '}
+                        from {latestEducation?.instituteName}
+                      </span>
+                    </p>
+                  )}
                 </>
               )}
 

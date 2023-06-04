@@ -14,6 +14,8 @@ import { useGetAssessmentMarksByStudentIDQuery } from '../features/student/stude
 import { useGetUnitMarksByStudentIDQuery } from '../features/student/studentApi';
 import { useParams } from 'react-router-dom';
 import ProjectcodeSkillTable from '../components/alumniComponents/ProjectcodeSkillTable';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import { BsTable } from 'react-icons/bs';
 
 function StudentInfo() {
   const [selectedWeek, setSelectedWeek] = useState(1);
@@ -128,7 +130,7 @@ function StudentInfo() {
                     tabIndex={0}
                     className="w-32 text-center btn m-1 bg-orange-100 border-0 text-orange-950 hover:bg-orange-200 hover:text-orange-900 shadow-sm border-b-4 border-b-orange-600"
                   >
-                    {types[selectedType - 1]}
+                    {types[selectedType - 1]} <RiArrowDropDownLine size={25} />
                   </label>
                   <ul
                     tabIndex={0}
@@ -150,6 +152,7 @@ function StudentInfo() {
                     className="w-32 text-center btn m-1 bg-purple-100 border-0 text-purple-950 hover:bg-purple-200 hover:text-purple-900 shadow-sm border-b-4 border-b-purple-500"
                   >
                     {weeks[selectedWeek - 1]}
+                    <RiArrowDropDownLine size={25} />
                   </label>
                   <ul
                     tabIndex={0}
@@ -167,9 +170,10 @@ function StudentInfo() {
               <span className=" dropdown dropdown-hover text-right ml-auto mb-3 ">
                 <label
                   tabIndex={0}
-                  className="w-32 text-center btn m-1 bg-green-100 border-0 text-green-950 hover:bg-green-200 hover:text-green-900 shadow-sm border-b-4 border-b-green-600"
+                  className="w-34 text-center btn m-1 bg-green-100 border-0 text-green-950 hover:bg-green-200 hover:text-green-900 shadow-sm border-b-4 border-b-green-600"
                 >
-                  {checkpoints[selectedCheckpoint - 1]}
+                  {checkpoints[selectedCheckpoint - 1]}{' '}
+                  <RiArrowDropDownLine size={25} />
                 </label>
                 <ul
                   tabIndex={0}
@@ -188,10 +192,10 @@ function StudentInfo() {
             </div>
             <div>
               <button
-                className="w-32 btn m-1 bg-green-100 border-0 text-green-950 hover:bg-green-200 hover:text-green-900 shadow-sm "
+                className="justify-between w-40 btn m-1 bg-green-100 border-2 border-green-300 text-green-950 hover:bg-green-200 hover:text-green-900 shadow-sm "
                 onClick={handleViewDetails}
               >
-                {buttonText}
+                {buttonText} <BsTable size={15} />
               </button>
             </div>
           </div>

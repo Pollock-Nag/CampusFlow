@@ -7,7 +7,7 @@ function RecentStudents({ students }) {
     <div>
       <div className="text-xl font-bold my-3"> Recent Students Activity </div>
       <div className="flex flex-row">
-        {students?.map((student) => (
+        {students?.slice(0, 6)?.map((student) => (
           <div className="flex-[0.166]" key={student?._id}>
             <SmallNameCard
               name={student?.name}

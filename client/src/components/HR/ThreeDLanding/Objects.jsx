@@ -9,16 +9,16 @@ function Objects() {
 
   return (
     <>
-      <pointLight color="blue" position={[8, -25, 5]} intensity={20} />
+      <pointLight color="purple" position={[8, -25, 5]} intensity={20} />
       <pointLight
         color="red"
         position={[0, -height * 2.25, 5]}
         intensity={10}
       />
-      <Item color="red" position={[0, 1, 0]}>
+      <Item color="blue" position={[0, 1, 0]}>
         <boxGeometry />
       </Item>
-      <Item color="blue" position={[-width / 5, -height * 0.6, 0]}>
+      <Item color="red" position={[-width / 5, -height * 0.6, 0]}>
         <boxGeometry />
       </Item>
       <Item color="black" position={[-width / 5, -height * 1.8, -2]}>

@@ -13,8 +13,6 @@ import { CgProfile } from 'react-icons/cg';
 import { useSelector } from 'react-redux';
 
 function SideBar() {
-  // get id from auth
-
   const studentId = useSelector((state) => state?.auth?.user?._id) || {};
   const role = localStorage.getItem('role');
   const location = useLocation();
@@ -53,7 +51,7 @@ function SideBar() {
       },
     }),
     ...(role === 'instructor' && {
-      'Mark Students': {
+      'Student Evaluation': {
         path: '/markstudents',
         icon: <TbNumbers />,
       },
