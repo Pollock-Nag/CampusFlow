@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { IoLogOutOutline } from 'react-icons/io5';
 import Cookies from 'js-cookie';
+import Chip from '../alumniComponents/Chip';
 
 function HRLayout({ children }) {
   const navigate = useNavigate();
@@ -12,11 +13,55 @@ function HRLayout({ children }) {
     Cookies.remove('hrauth');
     localStorage.clear();
   };
+  const searchResults = JSON.parse(localStorage.getItem('hrquery'));
+  console.log(searchResults);
   return (
     <>
       <div className="flex">
         <div className="flex-[0.2] ">
-          <div className=" m-4  bg-purple-50 p-2 shadow-lg h-[86vh] rounded-2xl overflow-y-auto min-w-[275px]">
+          <div className=" m-4  bg-purple-50 p-2 shadow-lg min-h-[5vh] rounded-2xl overflow-y-auto min-w-[275px]">
+            <div className="bg-purple-200 text-xl mt-4 text-center uppercase shadow-lg rounded-2xl p-3 border-b-violet-400 border-2 ">
+              Searched Query
+            </div>
+            <div className="flex flex-wrap m-2 gap-2">
+              <Chip
+                name={searchResults?.stack.toUpperCase()}
+                padding={3}
+                customColor={'violet-500'}
+                textColor={'white'}
+                borderColor={'violet-400'}
+              />
+              {searchResults?.frontendSkill.map((skill) => (
+                <Chip
+                  name={skill.toUpperCase()}
+                  padding={3}
+                  customColor={'indigo-400'}
+                  textColor={'white'}
+                  borderColor={'indigo-400'}
+                />
+              ))}
+              {searchResults?.backendSkill.map((skill) => (
+                <Chip
+                  name={skill.toUpperCase()}
+                  padding={3}
+                  customColor={'gray-600'}
+                  textColor={'white'}
+                  borderColor={'gray-400'}
+                />
+              ))}
+              {searchResults?.industries.map((skill) => (
+                <Chip
+                  name={skill.toUpperCase().slice(0, 10)}
+                  padding={3}
+                  customColor={'purple-400'}
+                  textColor={'white'}
+                  borderColor={'purple-600'}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className=" m-4  bg-purple-50 p-2 shadow-lg h-[70vh] rounded-2xl overflow-y-auto min-w-[275px]">
             <div className="bg-purple-200 text-xl mt-4 text-center uppercase shadow-lg animate-pulse rounded-2xl p-3 border-b-violet-400 border-2">
               More Talents
             </div>

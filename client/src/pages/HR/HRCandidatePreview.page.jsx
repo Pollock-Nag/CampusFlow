@@ -68,9 +68,11 @@ function HRCandidatePreview() {
 
   useEffect(() => {
     setFrontend(
-      filteredTechSkills?.filter((skill) => {
-        return skill?.skill?.stack?.includes('frontend') && skill?.marks > 5;
-      })
+      filteredTechSkills
+        ?.filter((skill) => {
+          return skill?.skill?.stack?.includes('frontend') && skill?.marks > 5;
+        })
+        ?.slice(0, 3)
     );
     setBackend(
       filteredTechSkills?.filter((skill) => {
