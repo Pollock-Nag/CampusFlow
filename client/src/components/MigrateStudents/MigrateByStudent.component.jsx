@@ -11,7 +11,10 @@ import {
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { Button } from '@mui/material';
 import { useChangeStudentsTypeMutation } from '../../features/student/studentApi';
-import { useConvertToAlumniMutation } from '../../features/alumni/alumniApi';
+import {
+  useConvertToAlumniMutation,
+  useInsertPersonaityRatingMutation,
+} from '../../features/alumni/alumniApi';
 import toast, { Toaster } from 'react-hot-toast';
 
 function MigrateByStudent() {
@@ -32,6 +35,8 @@ function MigrateByStudent() {
     convertToAlumni,
     { isSuccess: isConvertToAlumniSuccess, error: convertToAlumniError },
   ] = useConvertToAlumniMutation();
+  const [insertPersonality, { isSuccess }] =
+    useInsertPersonaityRatingMutation();
 
   useEffect(() => {
     if (isStudentFetchSuccess) {
@@ -51,6 +56,7 @@ function MigrateByStudent() {
     if (migration === 'alumni') {
       const data = { ids: [student] };
       convertToAlumni(data);
+      insertPersonality(student);
     } else {
       const data = { ids: [student], type: migration };
       changeStudentType(data);

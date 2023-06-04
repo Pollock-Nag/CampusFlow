@@ -28,6 +28,19 @@ export const alumniApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    // router.post(
+    //   '/insertPersonaityRating/:id',
+    //   alumniController.insertPersonaityRating
+    // );
+
+    insertPersonaityRating: builder.mutation({
+      query: (id) => ({
+        url: `/alumni/insertPersonaityRating/${id}`,
+        method: 'POST',
+        body: id,
+      }),
+    }),
   }),
 });
 
@@ -36,4 +49,5 @@ export const {
   useGetAlumniByIdQuery,
   useAddAlumniInfoMutation,
   useAddAlumniStackMutation,
+  useInsertPersonaityRatingMutation,
 } = alumniApi;

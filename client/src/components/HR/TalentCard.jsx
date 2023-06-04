@@ -143,7 +143,7 @@ function TalentCard({ result, studentId, quickView }) {
               {alumniInfo?.experiences?.length > 0 ? (
                 <>
                   <p className=" mt-1 leading-4 text-sm text-gray-700">
-                    I've worked with
+                    I've worked in
                     <span className="text-md text-gray-800">
                       <span className="font-bold text-purple-700">
                         {latestExperience?.companyName}
