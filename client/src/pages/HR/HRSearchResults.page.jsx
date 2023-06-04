@@ -37,7 +37,7 @@ function HRSearchResults() {
   return (
     <>
       <div className="flex justify-between mx-10 p-2 px-5 bg-purple-100 shadow-xl  mb-5 rounded-2xl">
-        <a className="btn btn-ghost normal-case text-xl">TalentGPT</a>
+        <a className="btn btn-ghost normal-case text-xl">Code Squad</a>
         <div className="flex">
           <div className="form-control ">
             <input

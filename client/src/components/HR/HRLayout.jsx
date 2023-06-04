@@ -14,12 +14,11 @@ function HRLayout({ children }) {
     localStorage.clear();
   };
   const searchResults = JSON.parse(localStorage.getItem('hrquery'));
-  console.log(searchResults);
   return (
     <>
       <div className="flex">
         <div className="flex-[0.2] ">
-          <div className=" m-4  bg-purple-50 p-2 shadow-lg min-h-[5vh] max-h-[20vh]  rounded-2xl overflow-y-auto min-w-[275px]">
+          <div className=" m-4  bg-purple-50 p-2 shadow-lg min-h-[5vh] max-h-[30vh]  rounded-2xl overflow-y-auto min-w-[275px]">
             <div className="bg-purple-200 text-xl mt-4 text-center uppercase shadow-lg rounded-2xl p-3 border-b-violet-400 border-2 ">
               Searched Query
             </div>
@@ -29,7 +28,7 @@ function HRLayout({ children }) {
                 padding={3}
                 customColor={'violet-500'}
                 textColor={'white'}
-                borderColor={'violet-400'}
+                borderColor={'violet-500'}
               />
               {searchResults?.frontendSkill.map((skill) => (
                 <Chip
@@ -46,7 +45,7 @@ function HRLayout({ children }) {
                   padding={3}
                   customColor={'gray-600'}
                   textColor={'white'}
-                  borderColor={'gray-400'}
+                  borderColor={'gray-600'}
                 />
               ))}
               {searchResults?.industries.map((skill) => (
@@ -55,7 +54,7 @@ function HRLayout({ children }) {
                   padding={3}
                   customColor={'purple-400'}
                   textColor={'white'}
-                  borderColor={'purple-600'}
+                  borderColor={'purple-400'}
                 />
               ))}
             </div>

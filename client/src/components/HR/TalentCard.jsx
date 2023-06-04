@@ -118,7 +118,7 @@ function TalentCard({ result, studentId, quickView }) {
                   <div className="text-xl font-semibold text-purple-700 drop-shadow-lg ">
                     {alumniInfo?.name}
                   </div>
-                  <div className="text-sm text-gray-700 drop-shadow-lg">
+                  <div className="text-sm text-gray-700 drop-shadow-sm">
                     <Chip
                       name={`${
                         studentInfo?.cohortName?.split('-')[1]?.toUpperCase() +
@@ -216,7 +216,7 @@ function TalentCard({ result, studentId, quickView }) {
           </div>
         </div>
         {!quickView && (
-          <div className="flex z-10 justify-end mr-5 mb-5">
+          <div className="flex z-10 justify-end mr-40 mb-5">
             <button
               className="btn btn-sm bg-purple-500 border-none flex items-center gap-2 hover:bg-purple-800 "
               onClick={handleBuildTeam}
