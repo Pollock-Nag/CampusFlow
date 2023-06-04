@@ -19,7 +19,7 @@ function HRLayout({ children }) {
     <>
       <div className="flex">
         <div className="flex-[0.2] ">
-          <div className=" m-4  bg-purple-50 p-2 shadow-lg min-h-[5vh] rounded-2xl overflow-y-auto min-w-[275px]">
+          <div className=" m-4  bg-purple-50 p-2 shadow-lg min-h-[5vh] max-h-[20vh]  rounded-2xl overflow-y-auto min-w-[275px]">
             <div className="bg-purple-200 text-xl mt-4 text-center uppercase shadow-lg rounded-2xl p-3 border-b-violet-400 border-2 ">
               Searched Query
             </div>

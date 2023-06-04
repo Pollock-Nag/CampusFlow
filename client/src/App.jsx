@@ -82,7 +82,14 @@ function App() {
           <Route path="/createStudent/:id" element={<CreateStudent />} />
           <Route path="/markStudent/:id/:week" element={<MarkStudent />} />
           <Route path="/markstudents" element={<MarkStudents />} />
-          <Route path="peerratings" element={<PeerRatings />} />
+          <Route
+            path="peerratings"
+            element={
+              <PrivateRoute>
+                <PeerRatings />
+              </PrivateRoute>
+            }
+          />
           <Route path="/cohorts" element={<Cohorts />}></Route>
           <Route
             path="/cohorts/:cohort/students/"
