@@ -17,7 +17,6 @@ export const authApi = apiSlice.injectEndpoints({
             'auth',
             JSON.stringify({
               accessToken: result.data.accessToken,
-
               user: result.data.user,
             }),
             { expires: 1 } // 1 day
