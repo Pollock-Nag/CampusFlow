@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function HrdetailsForm() {
+  const baseurl = import.meta.env.VITE_REACT_APP_API_URL;
+  const userid = '6469efc566559014433a7112';
   const [countryList, setCountryList] = useState([]);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -11,10 +13,12 @@ function HrdetailsForm() {
     companyEmail: '',
     title: '',
     country: '',
+    userid: userid,
   });
 
   useEffect(() => {
     // Fetch country list from API
+
     axios
       .get('https://restcountries.com/v3.1/all')
       .then((response) => {
@@ -27,6 +31,17 @@ function HrdetailsForm() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+  const postHrDetails = async (formData) => {
+    try {
+      const res = await axios.post(
+        `${baseurl}/hr/hrDetails/${userid}`,
+        formData
+      );
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -41,7 +56,9 @@ function HrdetailsForm() {
       title: '',
       country: '',
     });
-    console.log(formData); // Print the form data object
+
+    postHrDetails(formData);
+    console.log(formData);
   };
 
   return (

@@ -1,5 +1,6 @@
 const Student = require('../models/student/student.model');
 const Alumni = require('../models/alumni/alumni.model');
+const Hrdetails = require('../models/hr/hr.model');
 const axios = require('axios');
 const env = require('dotenv');
 // const Skill = require('../models/skill/skill.model');
@@ -147,7 +148,39 @@ const getMLmatch = async (req, res) => {
 
 // const allAlumni = await Student.find({type: 'alumni'});
 
+// add hr details to hr collection
+const addHrDetails = async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    companyName,
+    companyWebsite,
+    companyEmail,
+    title,
+    country,
+    userid,
+  } = req.body;
+  try {
+    const newHr = new Hrdetails({
+      firstName,
+      lastName,
+      companyName,
+      companyWebsite,
+      companyEmail,
+      title,
+      country,
+      userid,
+    });
+    await newHr.save();
+    res.status(200).send('HR details added successfully');
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
 module.exports = {
   stackWiseFilter,
   getMLmatch,
+  addHrDetails,
 };
