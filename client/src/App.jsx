@@ -48,6 +48,7 @@ import HRGoogleLogin from './components/HR/HRGoogleLogin';
 import useZoom from './hooks/useZoom';
 import AlumniCertification from './pages/AlumniCertification.page';
 import HrdetailsForm from './components/HR/HrDetails/HrdetailsForm';
+import HRDetails from './pages/HR/HRDetails.page';
 function App() {
   // const zoomLevel = useZoom();
   const authChecked = useAuthCheck();
@@ -59,7 +60,6 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
-          <Route path="/hrdetails" element={<HrdetailsForm />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route
             path="/login"
@@ -159,6 +159,7 @@ function App() {
               }
             />
             <Route path="welcome" element={<HRLanding />} />
+            <Route path="hrdetails" element={<HRDetails />} />
           </Route>
           <Route
             path="*"
